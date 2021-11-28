@@ -1,0 +1,77 @@
+{
+  "_id": {
+      "$oid": "61a342248a6f7db49ce365de"
+  },
+  
+"name": "Carl",
+"level": 1,
+"race": "Human",
+"class": "Paladin",
+"background": "Charlatan",
+"proficiencyBonus": 2,
+"hitPoints": 12,
+"speed": 25,
+"hitDice": {
+  "quantity": 2,
+  "dice": "d8"
+},
+"alignment": "Neutral",
+"stats": {
+  "strength": 12,
+  "dexterity": 12,
+  "constitution": 15,
+  "intelligence": 8,
+  "wisdom": 12,
+  "charisma": 10
+},
+"savingThrows": {
+  "strength": false,
+  "dexterity": false,
+  "constitution": true,
+  "intelligence": false,
+  "wisdom": false,
+  "charisma": true
+},
+"skills": {
+  "acrobatics": true,
+  "animalHandling": false,
+  "arcana": false,
+  "athletics": false,
+  "deception": false,
+  "history": false,
+  "insight": false,
+  "medicine": false,
+  "nature": true,
+  "perception": true,
+  "performance": false,
+  "persuasion": true,
+  "religion": false,
+  "sleightOfHand": false,
+  "stealth": false,
+  "survival": true
+},
+"personalityTraits": "Basic personality traits",
+"ideals": "Filler ideals go here.",
+"bonds": "Bonds will be here!",
+"flaws": "Flaws information.",
+"proficiencies": [ {
+  "name": "First proficiency",
+  "details": "Details about it.",
+  "bonus": 2
+}, {
+  "name": "Second proficiency",
+  "details": "Details about prof 2.",
+  "bonus": 3
+} ],
+"features": [ {
+  "name": "First feature",
+  "details": "Details about feat 1."
+}, {
+  "name": "Second feature",
+  "details": "Details about feat 2."
+} ],
+"spells": [
+  { "name": "Firebolt" },
+  { "name": "Guiding Light" }
+]
+}

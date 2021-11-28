@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, useParams } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css"
 
 import Navbar from "./components/navbar.component"
 import CharacterView from "./components/Character-view.component";
@@ -15,7 +16,7 @@ function App() {
 
   return (
     <Router>
-      <div className="container-fluid">
+      <div className="container-fluid bg">
         <Navbar />
         <Routes>
         <Route path="/" exact element={<CharacterView />} />
