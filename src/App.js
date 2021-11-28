@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes, useParams } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "./App.css"
 
 import Navbar from "./components/navbar.component"
 import ExercisesList from "./components/exercises-list.component";
@@ -12,7 +13,7 @@ import CreateUser from "./components/create-user.component";
 function App() {
   return (
     <Router>
-      <div className="container-fluid">
+      <div className="container-fluid bg">
         <Navbar />
         <Routes>
         <Route path="/" exact element={<ExercisesList />} />
