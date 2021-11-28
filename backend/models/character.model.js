@@ -80,7 +80,7 @@ const characterSchema = new Schema({
   bonds: { type: String },
   flaws: { type: String },
   proficiencies: [{ type: proficiencySchema }],
-  features: { type: featureSchema },
+  features: [{ type: featureSchema }],
   spells: [{ type: spellSchema }]
 
 
