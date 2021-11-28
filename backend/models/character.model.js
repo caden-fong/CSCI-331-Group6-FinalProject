@@ -7,6 +7,12 @@ var featureSchema = new Schema({
   details: { type: String }
 });
 
+var proficiencySchema = new Schema({
+  name: { type: String },
+  details: { type: String },
+  bonus: { type: Number }
+});
+
 var spellSchema = new Schema({
   name: { type: String }
 });
@@ -29,6 +35,12 @@ const characterSchema = new Schema({
   class: { type: String },
   background: { type: String},
   proficiencyBonus: { type: Number },
+  hitPoints: { type: Number },
+  speed: { type: Number },
+  hitDice: [{
+    quantity: { type: Number },
+    dice: { type: String }
+  }],
   stats: { type: [{
     strength: { type: Number },
     dexterity: { type: Number },
@@ -67,8 +79,9 @@ const characterSchema = new Schema({
   ideals: { type: String },
   bonds: { type: String },
   flaws: { type: String },
-  features: { type: [featureSchema] },
-  spells: [{ type: [spellSchema] }]
+  proficiencies: [{ type: proficiencySchema }],
+  features: { type: featureSchema },
+  spells: [{ type: spellSchema }]
 
 
 })
