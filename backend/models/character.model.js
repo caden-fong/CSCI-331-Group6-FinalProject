@@ -86,6 +86,6 @@ const characterSchema = new Schema({
 
 })
 
-const User = mongoose.model('User', userSchema);
+const Character = mongoose.model('Character', characterSchema);
 
-module.exports = User;
+module.exports = Character;
