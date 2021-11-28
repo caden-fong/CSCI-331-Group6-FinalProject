@@ -41,6 +41,7 @@ const characterSchema = new Schema({
     quantity: { type: Number },
     dice: { type: String }
   }],
+  alignment: { type: String },
   stats: { type: [{
     strength: { type: Number },
     dexterity: { type: Number },
