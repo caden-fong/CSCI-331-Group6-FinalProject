@@ -9,19 +9,22 @@ export default class Navbar extends Component {
   render() {
     return (
       <>
-      <nav className="navbar fixed-top navbar-dark navbar-expand-lg">
+      <nav className="navbar fixed-top navbar-expand-lg">
         <div className="container-fluid">
           <Link to="/" className="navbar-brand"><img src={Logo} style={{width:50}} className="img-responsive" alt="Character Companion Logo"/>Character Companion</Link>
           <div className="collpase navbar-collapse">
           <ul className="navbar-nav ms-auto">
             <li className="navbar-item">
-            <Link to="/" className="nav-link">Exercises</Link>
+            <Link to="/" className="nav-link">Home</Link>
             </li>
             <li className="navbar-item">
-            <Link to="/create" className="nav-link">Create Exercise Log</Link>
+            <Link to="/login" className="nav-link">Login</Link>
             </li>
-            <li className="navbar-item2">
-            <Link to="/user" className="nav-link">Create User</Link>
+            <li className="navbar-item">
+            <Link to="/sign-up" className="nav-link">Sign-up</Link>
+            </li>
+            <li className="navbar-item">
+            <Link to="/more" className="nav-link">More D&D</Link>
             </li>
           </ul>
           </div>
