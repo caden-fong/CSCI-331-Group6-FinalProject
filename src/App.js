@@ -11,6 +11,9 @@ import More from "./components/more.component";
 
  
 function App() {
+
+
+
   return (
     <Router>
       <div className="container-fluid bg">
@@ -24,6 +27,6 @@ function App() {
       </div>
     </Router>
   );
- }
+}
  
 export default App;
