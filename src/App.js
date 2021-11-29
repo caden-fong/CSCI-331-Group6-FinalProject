@@ -8,6 +8,9 @@ import Home from "./components/home.component";
 import Signup from "./components/signup.component";
 import Login from "./components/login.component";
 import More from "./components/more.component";
+import Profile from './components/profile.component';
+import Viewer from './components/viewer.component';
+import Creator from './components/creator.component';
 
  
 function App() {
@@ -22,6 +25,9 @@ function App() {
         <Route path="/sign-up" element={<Signup />} />
         <Route path="/login" element={<Login setLoginUser={setLoginUser}/>} />
         <Route path="/more" element={<More user={user}/>} />
+        <Route path="/profile" element={<Profile/>} />
+        <Route path="/creator" element={<Creator/>} />
+        <Route path="/viewer" element={<Viewer/>} />
         </Routes>
       </div>
     </Router>

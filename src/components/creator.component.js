@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './../App.css'
 
-export default class Profile extends Component {
+export default class Creator extends Component {
   constructor(props) {
     super(props);
 
@@ -10,7 +10,6 @@ export default class Profile extends Component {
     render() {
     return (
       <div className= "container-fluid">
-        bjdssvb
       </div>
     )
   }

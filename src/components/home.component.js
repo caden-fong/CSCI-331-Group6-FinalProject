@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import gather from './../gather.png';
 import './../App.css'
 
 export default class Home extends Component {
