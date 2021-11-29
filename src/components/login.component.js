@@ -49,33 +49,40 @@ class Login extends Component {
 
   render() {
     return (
-      <div>
-        <h3>Login</h3>
-        <h4>{this.state.errorSignin}</h4>
-          <form onSubmit={this.onSubmit}>
-            <div className="form-group"> 
-            <label>Username: </label>
-            <input  type="text"
-                required
-                className="form-control"
-                value={this.state.username}
-                onChange={this.onChangeUsername}
-                />
+      <>
+        <div className = "container-fluid logpg">
+          <div className="row">
+            <div className="col-">
+              <h3 className="login">Login</h3>
+              <h4>{this.state.errorSignin}</h4>
+                <form onSubmit={this.onSubmit}>
+                  <div className="form-group"> 
+                  <label className ='entuse'>Username: </label>
+                  <input  type="text"
+                      required
+                      className="form-control"
+                      value={this.state.username}
+                      onChange={this.onChangeUsername}
+                      />
+                  </div>
+                  <div className="form-group"> 
+                  <label className ='entpas'>Password: </label>
+                  <input  type="text"
+                      required
+                      className="form-control"
+                      value={this.state.password}
+                      onChange={this.onChangePassword}
+                      />
+                  </div>
+                  <div className="form-group lsmt">
+                  <input type="submit" value="Login" className="btn btn-dark" />
+                  </div>
+                </form>
             </div>
-            <div className="form-group"> 
-            <label>Password: </label>
-            <input  type="text"
-                required
-                className="form-control"
-                value={this.state.password}
-                onChange={this.onChangePassword}
-                />
-            </div>
-            <div className="form-group">
-            <input type="submit" value="Login" className="btn btn-primary" />
-            </div>
-          </form>
-      </div>
+          </div>
+        </div>
+        <div className="spacing">.</div>
+      </>
     )
   }
 

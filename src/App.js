@@ -11,7 +11,7 @@ import More from "./components/more.component";
 
  
 function App() {
-  const [user,setLoginUser] = useState({_id: 'alsdkfja'});
+  const [user,setLoginUser] = useState({});
 
   return (
     <Router>
