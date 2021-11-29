@@ -28,6 +28,7 @@ function App() {
         <Route path="/profile" element={<Profile/>} />
         <Route path="/creator" element={<Creator/>} />
         <Route path="/viewer" element={<Viewer/>} />
+        <Route path="/create" element={<Creator/>} />
         </Routes>
       </div>
     </Router>

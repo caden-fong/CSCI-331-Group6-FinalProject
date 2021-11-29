@@ -35,6 +35,9 @@ export default class Navbar extends Component {
             <Link to="/more" className="nav-link">More D&D</Link>
             </li>
             <li className="navbar-item">
+            <Link to="/viewer" className="nav-link">Characters</Link>
+            </li>
+            <li className="navbar-item">
             <Link to="#" className="nav-link">User ID: {this.state.id}</Link>
             </li>
           </ul>
