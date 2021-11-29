@@ -5,6 +5,17 @@ import Logo from './../CCLogo.svg';
 import './../App.css'
 
 export default class Navbar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      id: 'Not logged in.'
+    }
+
+    if (this.props.user._id) {
+      this.state.id = this.props.user._id;
+    }
+
+  }
 
   render() {
     return (
@@ -22,6 +33,9 @@ export default class Navbar extends Component {
             </li>
             <li className="navbar-item">
             <Link to="/more" className="nav-link">More D&D</Link>
+            </li>
+            <li className="navbar-item">
+            <Link to="#" className="nav-link">User ID: {this.state.id}</Link>
             </li>
           </ul>
           <div className= "navbar-nav2 ms-auto"><button className="btn btn-sm btn-outline-secondary" type="button"><Link to="/sign-up" className= "button">Sign up</Link></button></div>

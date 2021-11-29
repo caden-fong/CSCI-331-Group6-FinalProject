@@ -22,6 +22,16 @@ export default class More extends Component {
       //     {/* <p>{this.props.user._id}</p> */}
       <>
         <div class="container-fluid morestuff">
+        <div class="row">
+        <div class="col- mor">
+        </div>
+        <div class="col- mor">
+          <h4> User: </h4>
+          {this.state.id}
+        </div>
+        <div class="col- mor">
+        </div>
+        </div>
           <div class="row">
             <div class="col- mor">
               <div className="card">

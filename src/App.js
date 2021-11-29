@@ -19,7 +19,7 @@ function App() {
   return (
     <Router>
       <div className="container-fluid bg">
-        <Navbar />
+        <Navbar user={user}/>
         <Routes>
         <Route path="/" exact element={<Home />} />
         <Route path="/sign-up" element={<Signup />} />
