@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { BrowserRouter as Router, Route, Routes, useParams } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css"
@@ -11,8 +11,7 @@ import More from "./components/more.component";
 
  
 function App() {
-
-
+  const [user,setLoginUser] = useState({_id: 'alsdkfja'});
 
   return (
     <Router>
@@ -21,8 +20,8 @@ function App() {
         <Routes>
         <Route path="/" exact element={<Home />} />
         <Route path="/sign-up" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/more" element={<More />} />
+        <Route path="/login" element={<Login setLoginUser={setLoginUser}/>} />
+        <Route path="/more" element={<More user={user}/>} />
         </Routes>
       </div>
     </Router>
