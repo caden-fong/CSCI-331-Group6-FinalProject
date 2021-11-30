@@ -151,3 +151,10 @@
     margin-top: 100px;
     margin-bottom: 200px;
 }
+
+.moretitle {
+    text-align: center;
+    padding-top: 60px;
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 30pt;
+}
