@@ -19,7 +19,7 @@ function App() {
   return (
     <Router>
       <div className="container-fluid bg">
-        <Navbar />
+        <Navbar user={user}/>
         <Routes>
         <Route path="/" exact element={<Home />} />
         <Route path="/sign-up" element={<Signup />} />
@@ -28,6 +28,7 @@ function App() {
         <Route path="/profile" element={<Profile/>} />
         <Route path="/creator" element={<Creator/>} />
         <Route path="/viewer" element={<Viewer/>} />
+        <Route path="/create" element={<Creator/>} />
         </Routes>
       </div>
     </Router>

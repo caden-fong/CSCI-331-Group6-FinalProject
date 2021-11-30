@@ -13,8 +13,17 @@ import './../App.css'
 export default class More extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      id: 'Not logged in.'
+    }
+
+    if (this.props.user._id) {
+      this.state.id = this.props.user._id;
+    }
 
   }
+  
+  
 
     render() {
     return (
