@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { BrowserRouter as Router, Route, Routes, useParams } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css"
@@ -15,6 +15,12 @@ import Creator from './components/creator.component';
  
 function App() {
   const [user,setLoginUser] = useState({});
+  useEffect(() => {
+    const loggedIn = localStorage.getItem('user');
+    if (loggedIn) {
+      setLoginUser(JSON.parse(loggedIn));
+    }
+  }, []);
 
   return (
     <Router>

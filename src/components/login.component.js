@@ -43,6 +43,7 @@ class Login extends Component {
     axios.post('http://localhost:5038/users/login', newUser)
       .then(res => {
         this.props.setLoginUser(res.data);
+        localStorage.setItem('user', res.data);
         this.props.navigate('/profile');
       }).catch(error => this.setState({errorSignin: "Invalid login, please try again.", username: '', password: ''}));
   };
