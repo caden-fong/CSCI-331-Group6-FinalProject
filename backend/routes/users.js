@@ -23,7 +23,11 @@ router.route('/login').post((req, res) => {
     User.findOne({username: username}).then(user => {
         if(user) {
             if(password === user.password){
-                res.json(user);
+                const userInfo = {
+                    id: user._id,
+                    username: user.username
+                };
+                res.json(userInfo);
             } else {
                 res.status(400).json('Error: ' + err);
             }

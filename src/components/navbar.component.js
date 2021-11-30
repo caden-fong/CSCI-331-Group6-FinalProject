@@ -7,10 +7,16 @@ import './../App.css'
 class Navbar extends Component {
   constructor(props) {
     super(props);
+    this.onLogout = this.onLogout.bind(this);
+  }
+
+  onLogout (e) {
+    this.props.logout({}); 
+    localStorage.clear();
   }
 
   render() {
-    if (this.props.user._id) {
+    if (this.props.user.id) {
       return (
         <nav className="navbar navbar-expand-lg">
         <div className="container-fluid">
@@ -27,7 +33,7 @@ class Navbar extends Component {
             <Link to="/more" className="nav-link">More D&D</Link>
             </li>      
           </ul>
-          <div className= "navbar-nav2 ms-auto"><button className="btn btn-sm btn-outline-secondary" type="button"><Link to="/login" className= "button">Log Out</Link></button></div>
+          <div className= "navbar-nav2 ms-auto"><button className="btn btn-sm btn-outline-secondary" type="button" onClick={this.onLogout}><Link to="/login" className= "button">Log Out</Link></button></div>
           </div>
         </div>
       </nav>

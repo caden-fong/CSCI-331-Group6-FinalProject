@@ -15,17 +15,18 @@ import Creator from './components/creator.component';
  
 function App() {
   const [user,setLoginUser] = useState({});
+
   useEffect(() => {
     const loggedIn = localStorage.getItem('user');
     if (loggedIn) {
-      setLoginUser(JSON.parse(loggedIn));
+      setLoginUser(loggedIn);
     }
   }, []);
 
   return (
     <Router>
       <div className="container-fluid bg">
-        <Navbar user={user}/>
+        <Navbar user={user} logout={setLoginUser}/>
         <Routes>
         <Route path="/" exact element={<Home />} />
         <Route path="/sign-up" element={<Signup />} />
