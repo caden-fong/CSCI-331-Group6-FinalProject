@@ -155,6 +155,17 @@
 .moretitle {
     text-align: center;
     padding-top: 60px;
-    font-family: 'Fira Sans', sans-serif;
+    font-family: 'Grenze Gotisch', cursive;
     font-size: 30pt;
+}
+
+.profilelogo {
+    border-radius: 100%;
+    height: 70px;
+    margin: 50px;
+}
+
+.userp {
+    font-family: 'Fira Sans', sans-serif;
+    color: white;
 }

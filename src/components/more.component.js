@@ -13,28 +13,19 @@ import './../App.css'
 export default class More extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      id: 'Not logged in.'
-    }
-
-    if (this.props.user._id) {
-      this.state.id = this.props.user._id;
-    }
-
   }
   
   
 
     render() {
     return (
-      //     {/* <p>{this.props.user._id}</p> */}
       <>
         <div className="container-fluid morestuff">
-          <p className="moretitle">Some of our Favorites</p>
+          <p className="moretitle">To Help you Thorugh your Adventure</p>
           <div className="row">
             <div className="col- mor">
               <div className="card">
-                <img src={p1} class="card-img-top" alt="dfjfsdf"/>
+                <img src={p1} className="card-img-top" alt="Player's Handbook"/>
                 <div className="card-body">
                   <h5 className="card-title">Player's Handbook</h5>
                   <p className="card-text">(Dungeons & Dragons) by Wizards RPG Team</p>
@@ -44,7 +35,7 @@ export default class More extends Component {
             </div>
             <div className="col- mor">
               <div className="card">
-                <img src={p2} class="card-img-top" alt="dfjfsdf"/>
+                <img src={p2} className="card-img-top" alt="Dungeons & Dragons Monster Manual"/>
                 <div className="card-body">
                   <h5 className="card-title">Dungeons & Dragons Monster Manual</h5>
                   <p className="card-text">(Core Rulebook, D&D Roleplaying Game)</p>
@@ -54,9 +45,9 @@ export default class More extends Component {
             </div>
             <div className="col- mor">
               <div className="card">
-                <img src={p3} class="card-img-top" alt="dfjfsdf"/>
+                <img src={p3} className="card-img-top" alt="Dungeons & Dragons Dungeon Master's Guide"/>
                 <div className="card-body">
-                  <h5 className="card-title">Dungeons & Dragons Dungeon Master's Guide </h5>
+                  <h5 className="card-title">Dungeons & Dragons Dungeon Master's Guide</h5>
                   <p className="card-text">(Core Rulebook, D&D Roleplaying Game)</p>
                   <a href="https://www.amazon.com/Dungeons-Dragons-Dungeon-Rulebook-Roleplaying/dp/0786965622/ref=sr_1_1?crid=2HPWYNBEXLCB8&keywords=d%26d+dm+guide&qid=1638239958&sprefix=d%26d+dm%2Caps%2C401&sr=8-1" class="btn btn-dark stretched-link">Shop Amazon</a>
                 </div>
@@ -69,7 +60,7 @@ export default class More extends Component {
           <div className="row">
             <div className="col- mor">
               <div className="card car">
-                <img src={p4} class="card-img-top" alt="dfjfsdf"/>
+                <img src={p4} className="card-img-top" alt="Curse of Strahd: Revamped Premium Edition"/>
                 <div className="card-body">
                   <h5 className="card-title">Curse of Strahd: Revamped Premium Edition</h5>
                   <p className="card-text">(D&D Boxed Set) (Dungeons & Dragons)</p>
@@ -79,7 +70,7 @@ export default class More extends Component {
             </div>
             <div className="col- mor">
               <div className="card car">
-                <img src={p5} class="card-img-top" alt="dfjfsdf"/>
+                <img src={p5} className="card-img-top" alt="Dungeons & Dragons Core Rulebooks Gift Set"/>
                 <div className="card-body">
                   <h5 className="card-title">Dungeons & Dragons Core Rulebooks Gift Set</h5>
                   <p className="card-text">(Special Foil Covers Edition with Slipcase, Player's Handbook, Dungeon Master's Guide, Monster Manual, DM Screen)</p>
@@ -89,7 +80,7 @@ export default class More extends Component {
             </div>
             <div className="col- mor">
               <div className="card car">
-                <img src={p6} class="card-img-top" alt="dfjfsdf"/>
+                <img src={p6} className="card-img-top" alt="Xanathar's Guide to Everything"/>
                 <div className="card-body">
                   <h5 className="card-title">Xanathar's Guide to Everything</h5>
                   <p className="card-text">(Dungeons & Dragons)</p>
@@ -104,7 +95,7 @@ export default class More extends Component {
           <div className="row">
             <div className="col- mor">
               <div className="card car2">
-                <img src={p7} class="card-img-top" alt="dfjfsdf"/>
+                <img src={p7} className="card-img-top" alt="D&D Dungeon Kit and DM's Guide"/>
                 <div className="card-body">
                   <h5 className="card-title">D&D Dungeon Kit and DM's Guide</h5>
                   <p className="card-text"> </p>
@@ -114,7 +105,7 @@ export default class More extends Component {
             </div>
             <div className="col- mor">
               <div className="card car2">
-                <img src={p8} class="card-img-top" alt="dfjfsdf"/>
+                <img src={p8} className="card-img-top" alt="DND Dice Set 25 x 7"/>
                 <div className="card-body">
                   <h5 className="card-title">DND Dice Set 25 x 7</h5>
                   <p className="card-text">(175 Pieces) Double-Colors Polyhedron Dice for Dungeons and Dragons DND RPG MTG Table Games D4 D6 D8 D10 D% D12 D20 25 Colors Dice with 1 Large Flannel Bag</p>
@@ -124,7 +115,7 @@ export default class More extends Component {
             </div>
             <div className="col- mor">
               <div className="card car2">
-                <img src={p9} class="card-img-top" alt="dfjfsdf"/>
+                <img src={p9} className="card-img-top" alt="CiaraQ Polyhedral Dice Set"/>
                 <div className="card-body">
                   <h5 className="card-title">CiaraQ Polyhedral Dice Set</h5>
                   <p className="card-text">(35 Pieces) with Black Pouches, 5 Complete Double-Colors Dice Sets of D4 D6 D8 D10 D% D12 D20 Compatible with Dungeons and Dragons DND RPG MTG Table Games</p>

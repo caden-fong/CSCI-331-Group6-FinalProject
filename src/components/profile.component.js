@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import profilepic from './../profilepic.svg';
 import './../App.css'
 
 export default class Profile extends Component {
@@ -9,9 +10,12 @@ export default class Profile extends Component {
 
     render() {
     return (
-      <div className= "container-fluid">
-        bjdssvb
-      </div>
+      <>
+        <div className= "container-fluid">
+          <img src={profilepic} className= "profilelogo" alt="Character Creator Logo"/>
+          <h3 className="userp">dsfsdfdsfdsfsde</h3>
+        </div>
+      </>
     )
   }
 }
