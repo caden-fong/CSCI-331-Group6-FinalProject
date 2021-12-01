@@ -82,7 +82,7 @@ router.route('/create/:id').post((req, res) => {
 
     newCharacter.save()
           .then(() => res.json('Character updated!'))
-          .catch(err => res.status(400).json('Error: ' + err));
+          .catch(err => res.status(400).json('Error: Character Route: ' + err));
 });
 
 module.exports = router;

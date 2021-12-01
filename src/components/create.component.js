@@ -85,7 +85,9 @@ class Create extends Component {
 
   }
 
-  onChangeName(e) {}
+  onChangeName(e) {
+    this.state.name = e.target.value;
+  }
   onChangeLevel(e) {}
   onChangeRace(e) {}
   onChangeClass(e) {
@@ -115,7 +117,7 @@ class Create extends Component {
     e.preventDefault();
 
     const character = {
-      name: '',
+      name: this.state.name,
       level: 1,
       race: '',
       class: 'Artificer',
@@ -171,10 +173,15 @@ class Create extends Component {
       spells: {}
     };
   
+    console.log('Character:');
     console.log(character);
+    console.log('ID: ' + this.props.user.id);
 
     axios.post('/characters/create/'+this.props.user.id, character)
-      .then(res => console.log(res.data));
+      .then(res => console.log(res.data))
+      .catch(function (error) {
+        console.log('Error: create component: ' + error.response.data);
+      })
     
     // window.location = '/';
     }
@@ -213,18 +220,13 @@ class Create extends Component {
             <div className="col-sm creat">
               <label>Race</label>
               <select className="form-select">
-<<<<<<< HEAD
                 <option>Human</option>
-=======
-                <option>race</option>
->>>>>>> 4f4dfb4d1624faedb61941a49861829473970790
               </select>
               <small>Click to choose a race</small>
             </div>
           </div>
           <div className="row creatrow">
             <div className="col-sm creat2">
-<<<<<<< HEAD
               <label>Actual Class</label>
               <select 
                 className="form-select"
@@ -243,11 +245,6 @@ class Create extends Component {
                 <option>Sorcerer</option>
                 <option>Warlock</option>
                 <option>Wizard</option>
-=======
-              <label>Class</label>
-              <select className="form-select">
-                <option>class</option>
->>>>>>> 4f4dfb4d1624faedb61941a49861829473970790
               </select>
               <small>Click to choose a class</small>
             </div>
