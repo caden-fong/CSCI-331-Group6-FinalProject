@@ -18,10 +18,10 @@ function App() {
 
   useEffect(() => {
     const loggedIn = localStorage.getItem('user');
-    if (loggedIn) {
-      setLoginUser(loggedIn);
+    if (loggedIn && !user.id) {
+      setLoginUser(JSON.parse(loggedIn));
     }
-  }, []);
+  });
 
   return (
     <Router>
@@ -31,7 +31,7 @@ function App() {
         <Route path="/" exact element={<Home />} />
         <Route path="/sign-up" element={<Signup />} />
         <Route path="/login" element={<Login setLoginUser={setLoginUser}/>} />
-        <Route path="/more" element={<More user={user}/>} />
+        <Route path="/more" element={<More />} />
         <Route path="/profile" element={<Profile/>} />
         <Route path="/creator" element={<Creator/>} />
         <Route path="/viewer" element={<Viewer/>} />
