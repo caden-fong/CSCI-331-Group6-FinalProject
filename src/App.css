@@ -195,5 +195,80 @@
 .userp {
     font-size: 50pt;
     font-family: 'Grenze Gotisch', cursive;
+}
 
+.create {
+    background-color: white;
+    align-content: center;
+    font-family: 'Grenze Gotisch', cursive;
+    text-align: center;
+    font-size: 50pt;
+    padding-top: 50px;
+    border-radius: 10%;
+}
+
+.creat {
+    text-align: left;
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 13pt;
+    padding-top: 100px;
+    padding-right: 60px;
+    padding-left: 60px;
+}
+
+.creat2 {
+    text-align: left;
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 13pt;
+    margin-top: 100px;
+    padding-right: 60px;
+    padding-left: 60px;
+}
+
+.creat3 {
+    text-align: left;
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 13pt;
+    margin-top: 100px;
+    padding-right: 60px;
+    padding-left: 60px;
+}
+
+.creat4 {
+    text-align: left;
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 13pt;
+    margin-top: 100px;
+    padding-right: 60px;
+    padding-left: 60px;
+}
+
+.creat5 {
+    text-align: left;
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 13pt;
+    margin-top: 100px;
+    padding-right: 60px;
+    padding-left: 60px;
+    margin-bottom: 150px;
+}
+
+.creatrow {
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.viewcol {
+    width: 200px;
+    height: 200px;
+    text-align: center;
+    margin-left: 125px;
+}
+
+.viro {
+    align-content: center;
+}
+
+.viwe {
+    background-color: white;
 }
