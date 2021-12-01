@@ -11,6 +11,7 @@ class Create extends Component {
     this.onChangeLevel = this.onChangeLevel.bind(this);
     this.onChangeRace = this.onChangeRace.bind(this);
     this.onChangeClass = this.onChangeClass.bind(this);
+    this.onChangeSubclass = this.onChangeSubclass.bind(this);
     this.onChangeBackground = this.onChangeBackground.bind(this);
     this.onChangeAlignment = this.onChangeAlignment.bind(this);
     this.onChangeStats = this.onChangeStats.bind(this);
@@ -26,7 +27,14 @@ class Create extends Component {
     this.onSubmit = this.onSubmit.bind(this);
     
     this.state = {
-      classObject: {},
+      classObject: {
+        _id: 0,
+        class: [{}],
+        classFeature: [{}],
+        name: '',
+        subclass: [{}],
+        subclassFeature: [{}]
+      },
       name: '',
       level: 1,
       race: '',
@@ -83,6 +91,16 @@ class Create extends Component {
       spells: {}
     }
 
+    axios.get('/classes/'+this.state.class)
+      .then(response => {
+        console.log("Class!");
+        console.log(response.data);
+        this.setState({classObject: response.data})  
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+
   }
 
   onChangeName(e) {
@@ -100,6 +118,7 @@ class Create extends Component {
         console.log(error);
       })
   }
+  onChangeSubclass(e) {}
   onChangeBackground(e) {}
   onChangeAlignment(e) {}
   onChangeStats(e) {}
@@ -172,6 +191,7 @@ class Create extends Component {
       features: {},
       spells: {}
     };
+
   
     console.log('Character:');
     console.log(character);
@@ -186,7 +206,15 @@ class Create extends Component {
     // window.location = '/';
     }
 
-  
+    
+
+    
+
+    renderSubClassOptions() {
+      return this.state.classObject.subclass.map(subclass => {
+        return <option>{subclass.name}</option>;
+      })
+  }
 
     render() {
     if(!this.props.user.id) {
@@ -227,7 +255,7 @@ class Create extends Component {
           </div>
           <div className="row creatrow">
             <div className="col-sm creat2">
-              <label>Actual Class</label>
+              <label>Class</label>
               <select 
                 className="form-select"
                 onChange={this.onChangeClass}
@@ -261,9 +289,12 @@ class Create extends Component {
           </div>
           <div className="row creatrow">
             <div className="col-sm creat3">
-              <label>Class</label>
-              <select className="form-select">
-                <option>class</option>
+              <label>Subclass</label>
+              <select 
+                className="form-select"
+                onChange={this.onChangeSubclass}
+                >
+                { this.renderSubClassOptions() }
               </select>
               <small>Click to choose a class</small>
             </div>
