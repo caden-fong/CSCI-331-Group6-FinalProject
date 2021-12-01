@@ -19,9 +19,11 @@ class Viewer extends Component {
     super(props);
     this.state = {characters: []}
 
+
   }
+
   componentDidMount() {
-    axios.get('http://localhost:5038/characters/')
+    axios.get('/characters/')
         .then(response => {
             this.setState({ characters: response.data });
             console.log(this.state.characters);
