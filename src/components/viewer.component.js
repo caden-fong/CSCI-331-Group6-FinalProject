@@ -3,6 +3,7 @@ import CCLogo from './../CCLogo.svg';
 import p1 from './../p1.jpg';
 import './../App.css'
 import axios from 'axios';
+import { useNavigate } from 'react-router';
 
 const Character = props => (
   <tr>
@@ -12,7 +13,8 @@ const Character = props => (
     <td>{props.character.class}</td>
   </tr>
 )
-export default class Viewer extends Component {
+
+class Viewer extends Component {
   constructor(props) {
     super(props);
     this.state = {characters: []}
@@ -55,4 +57,9 @@ export default class Viewer extends Component {
       </div>
     )
   }
+}
+
+export default (props) => {
+  const navigate = useNavigate();
+  return (<Viewer {...props} navigate={navigate}/>);
 }
