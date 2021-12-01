@@ -24,7 +24,7 @@ class Create extends Component {
             </div>
             <div className="col-sm creat">
               <label>Level</label>
-              <select className="form-control">
+              <select className="form-select">
                 <option>1</option>
                 <option>2</option>
                 <option>3</option>
@@ -35,7 +35,7 @@ class Create extends Component {
             </div>
             <div className="col-sm creat">
               <label>Race</label>
-              <select className="form-control">
+              <select className="form-select">
                 <option>race</option>
               </select>
               <small>Click to choose a race</small>
@@ -44,14 +44,14 @@ class Create extends Component {
           <div className="row creatrow">
             <div className="col-sm creat2">
               <label>Class</label>
-              <select className="form-control">
+              <select className="form-select">
                 <option>class</option>
               </select>
               <small>Click to choose a class</small>
             </div>
             <div className="col-sm creat2">
               <label>Background</label>
-              <select className="form-control">
+              <select className="form-select">
                 <option>class</option>
               </select>
               <small>Click to choose a background</small>
@@ -63,14 +63,14 @@ class Create extends Component {
           <div className="row creatrow">
             <div className="col-sm creat3">
               <label>Class</label>
-              <select className="form-control">
+              <select className="form-select">
                 <option>class</option>
               </select>
               <small>Click to choose a class</small>
             </div>
             <div className="col-sm creat3">
               <label>Background</label>
-              <select className="form-control">
+              <select className="form-select">
                 <option>class</option>
               </select>
               <small>Click to choose a background</small>
@@ -82,14 +82,14 @@ class Create extends Component {
           <div className="row creatrow">
             <div className="col-sm creat4">
               <label>Class</label>
-              <select className="form-control">
+              <select className="form-select">
                 <option>class</option>
               </select>
               <small>Click to choose a class</small>
             </div>
             <div className="col-sm creat4">
               <label>Background</label>
-              <select className="form-control">
+              <select className="form-select">
                 <option>class</option>
               </select>
               <small>Click to choose a background</small>
@@ -101,14 +101,14 @@ class Create extends Component {
           <div className="row creatrow">
             <div className="col-sm creat5">
               <label>Class</label>
-              <select className="form-control">
+              <select className="form-select">
                 <option>class</option>
               </select>
               <small>Click to choose a class</small>
             </div>
             <div className="col-sm creat5">
               <label>Background</label>
-              <select className="form-control">
+              <select className="form-select">
                 <option>class</option>
               </select>
               <small>Click to choose a background</small>
