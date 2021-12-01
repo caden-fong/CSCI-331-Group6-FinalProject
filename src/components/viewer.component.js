@@ -40,21 +40,7 @@ class Viewer extends Component {
 
     render() {
     return (
-      <div class="container viwe">
-          <div className="container-fluid">
-          <div className="row viro">
-            <div className="col- viewcol">
-              dfsfdsf
-            </div>
-            <div className="col- viewcol">
-              sdfs
-            </div>
-            <div className="col- viewcol">
-              sfdd
-            </div>
-          </div>
-        </div>
-      </div>
+      <div></div>
     )
   }
 }
