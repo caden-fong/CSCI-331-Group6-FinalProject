@@ -40,7 +40,7 @@ class Login extends Component {
       password: this.state.password
     };
 
-    axios.post('http://localhost:5038/users/login', newUser)
+    axios.post('/users/login', newUser)
       .then(res => {
         this.props.setLoginUser(res.data);
         localStorage.setItem('user', JSON.stringify(res.data));
