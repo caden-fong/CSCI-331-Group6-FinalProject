@@ -10,7 +10,7 @@ router.route('/:id').get((req, res) => {
   });
 
 router.route('/user/:id').get((req, res) => {
-  Character.find()
+  Character.find({id: req.params.id})
       .then(characters => res.json(characters))
       .catch(err => res.status(400).json('Error: ' + err));
   });

@@ -1,13 +1,45 @@
 import React, { Component } from 'react';
 import './../App.css';
 import { useNavigate } from 'react-router';
+import { Link } from 'react-router-dom';
+
+const Character = props => (
+    <div className="col- prf">
+      <div className="card indchar">
+        <div className="card-body">
+          <h5 className="card-title">Player's Handbook</h5>
+          <a href="#" className="btn btn-dark stretched-link">View</a>
+        </div>
+      </div>
+    </div>
+);
 
 class Profile extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      characters: []
+    };
   }
 
-    render() {
+  componentDidMount() {
+    axios.get('/characters/user/' + this.props.user.id)
+        .then(response => {
+            this.setState({ characters: response.data });
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+  }
+
+  characterList() {
+    return this.state.exercises.map(currentexercise => {
+      return <Character exercise={currentexercise} deleteExercise={this.deleteExercise} key={currentexercise._id}/>;
+    });
+  }
+
+  render() {
       if(!this.props.user.id) {
         return null;
       }
@@ -19,30 +51,7 @@ class Profile extends Component {
 
         <div className="container-fluid">
           <div className="row">
-            <div className="col- prf">
-              <div className="card indchar">
-                <div className="card-body">
-                  <h5 className="card-title">Player's Handbook</h5>
-                  <a href="#" className="btn btn-dark stretched-link">View</a>
-                </div>
-              </div>
-            </div>
-            <div className="col- prf">
-              <div className="card indchar">
-                <div className="card-body">
-                  <h5 className="card-title">Player's Handbook</h5>
-                  <a href="#" className="btn btn-dark stretched-link">View</a>
-                </div>
-              </div>
-            </div>
-            <div className="col- prf">
-              <div className="card indchar">
-                <div className="card-body">
-                  <h5 className="card-title">Player's Handbook</h5>
-                  <a href="#" className="btn btn-dark stretched-link">View</a>
-                </div>
-              </div>
-            </div>
+            {this.characterList()}
           </div>
         </div>
       </>
