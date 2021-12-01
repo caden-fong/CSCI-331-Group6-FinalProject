@@ -10,7 +10,7 @@ import Login from "./components/login.component";
 import More from "./components/more.component";
 import Profile from './components/profile.component';
 import Viewer from './components/viewer.component';
-import Creator from './components/creator.component';
+import Create from './components/create.component';
 
  
 function App() {
@@ -32,10 +32,9 @@ function App() {
         <Route path="/sign-up" element={<Signup />} />
         <Route path="/login" element={<Login setLoginUser={setLoginUser}/>} />
         <Route path="/more" element={<More />} />
-        <Route path="/profile" element={<Profile/>} />
-        <Route path="/creator" element={<Creator/>} />
+        <Route path="/profile" element={<Profile user={user}/>} />
+        <Route path="/create" element={<Create user={user}/>} />
         <Route path="/viewer" element={<Viewer/>} />
-        <Route path="/create" element={<Creator/>} />
         </Routes>
       </div>
     </Router>

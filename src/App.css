@@ -173,11 +173,11 @@
     margin-top: 80px;
 }
 
-.userp {
+.userinfo {
     font-family: 'Fira Sans', sans-serif;
     color: white;
-    display: inline;
     font-size: 15pt;
+    padding: 100px;
 }
 
 .indchar {

@@ -1,18 +1,23 @@
 import React, { Component } from 'react';
 import profilepic from './../profilepic.svg';
-import './../App.css'
+import './../App.css';
+import { useNavigate } from 'react-router';
 
-export default class Profile extends Component {
+class Profile extends Component {
   constructor(props) {
     super(props);
   }
 
     render() {
+      if(!this.props.user.id) {
+        window.location = "/login";
+        return null;
+      }
     return (
       <>
         <div className= "container-fluid userinfo">
-          <img src={profilepic} className= "profilelogo" alt="Character Creator Logo"/>
-          <h3 className="userp">dsfsdfdsfdsfsde</h3>
+          {/* <img src={profilepic} className= "profilelogo" alt="Character Creator Logo"/> */}
+          <h3 className="userp">{this.props.user.username}'s Characters</h3>
         </div>
 
         <div className="container-fluid">
@@ -46,4 +51,9 @@ export default class Profile extends Component {
       </>
     )
   }
+}
+
+export default (props) => {
+  const navigate = useNavigate();
+  return (<Profile {...props} navigate={navigate}/>);
 }

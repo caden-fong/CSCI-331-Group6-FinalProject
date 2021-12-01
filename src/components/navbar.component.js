@@ -2,7 +2,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Logo from './../CCLogo.svg';
-import './../App.css'
+import './../App.css';
+import { useNavigate } from 'react-router';
 
 class Navbar extends Component {
   constructor(props) {
@@ -33,7 +34,7 @@ class Navbar extends Component {
             <Link to="/more" className="nav-link">More D&D</Link>
             </li>      
           </ul>
-          <div className= "navbar-nav2 ms-auto"><button className="btn btn-sm btn-outline-secondary" type="button" onClick={this.onLogout}><Link to="/login" className= "button">Log Out</Link></button></div>
+          <div className= "navbar-nav2 ms-auto"><button className="btn btn-sm btn-outline-secondary" type="button" onClick={this.onLogout}>Log Out</button></div>
           </div>
         </div>
       </nav>
@@ -64,5 +65,5 @@ class Navbar extends Component {
 }
 
 export default (props) => {
-  return (<Navbar {...props}/>);
+  return (<Navbar {...props} navigate={useNavigate}/>);
 }
