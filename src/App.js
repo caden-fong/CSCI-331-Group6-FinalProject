@@ -34,7 +34,7 @@ function App() {
         <Route path="/more" element={<More />} />
         <Route path="/profile" element={<Profile user={user}/>} />
         <Route path="/create" element={<Create user={user}/>} />
-        <Route path="/viewer/:id" element={<Viewer/>} />
+        <Route path="/viewer/:id" element={<Viewer user={user} />} />
         </Routes>
       </div>
     </Router>
