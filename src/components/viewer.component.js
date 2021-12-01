@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import CCLogo from './../CCLogo.svg';
+import p1 from './../p1.jpg';
 import './../App.css'
 import axios from 'axios';
 
@@ -36,21 +38,20 @@ export default class Viewer extends Component {
 
     render() {
     return (
-      <div class="container-fluid morestuff">
-      <h3>List of Characters</h3>
-      <table className="table">
-        <thead className="thead-light">
-          <tr>
-            <th>Name</th>
-            <th>Level</th>
-            <th>Race</th>
-            <th>Class</th>
-          </tr>
-        </thead>
-        <tbody>
-          { this.characterList() }
-        </tbody>
-      </table>
+      <div class="container viwe">
+          <div className="container-fluid">
+          <div className="row viro">
+            <div className="col- viewcol">
+              dfsfdsf
+            </div>
+            <div className="col- viewcol">
+              sdfs
+            </div>
+            <div className="col- viewcol">
+              sfdd
+            </div>
+          </div>
+        </div>
       </div>
     )
   }

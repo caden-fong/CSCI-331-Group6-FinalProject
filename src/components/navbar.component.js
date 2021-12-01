@@ -34,6 +34,10 @@ class Navbar extends Component {
             <li className="navbar-item">
             <Link to="/more" className="nav-link">More D&D</Link>
             </li>      
+            <li className="navbar-item"> 
+            {/* delete after styling */}
+            <Link to="/viewer" className="nav-link">view</Link>
+            </li>   
           </ul>
           <div className= "navbar-nav2 ms-auto"><button className="btn btn-sm btn-outline-secondary" type="button" onClick={this.onLogout}>Log Out</button></div>
           </div>

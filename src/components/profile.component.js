@@ -22,7 +22,7 @@ class Profile extends Component {
             <div className="col- prf">
               <div className="card indchar">
                 <div className="card-body">
-                  <h5 className="card-title">Player's Handbook</h5>
+                  <h5 className="card-title">P</h5>
                   <a href="#" className="btn btn-dark stretched-link">View</a>
                 </div>
               </div>
@@ -30,7 +30,7 @@ class Profile extends Component {
             <div className="col- prf">
               <div className="card indchar">
                 <div className="card-body">
-                  <h5 className="card-title">Player's Handbook</h5>
+                  <h5 className="card-title">P</h5>
                   <a href="#" className="btn btn-dark stretched-link">View</a>
                 </div>
               </div>
@@ -38,7 +38,15 @@ class Profile extends Component {
             <div className="col- prf">
               <div className="card indchar">
                 <div className="card-body">
-                  <h5 className="card-title">Player's Handbook</h5>
+                  <h5 className="card-title">P</h5>
+                  <a href="#" className="btn btn-dark stretched-link">View</a>
+                </div>
+              </div>
+            </div>
+            <div className="col- prf">
+              <div className="card indchar">
+                <div className="card-body">
+                  <h5 className="card-title">P</h5>
                   <a href="#" className="btn btn-dark stretched-link">View</a>
                 </div>
               </div>
