@@ -8,8 +8,10 @@ const Character = props => (
     <div className="col- prf">
       <div className="card indchar">
         <div className="card-body">
-          <h5 className="card-title">Player's Handbook</h5>
-          <a href="#" className="btn btn-dark stretched-link">View</a>
+          <h5 className="card-title">{props.character.name}</h5>
+          <p>{props.character.class}, level {props.character.level}</p>
+          <p>{props.character.race}</p>
+          <Link className="btn btn-dark stretched-link" to={"/viewer/"+props.character._id}>view</Link>
         </div>
       </div>
     </div>
@@ -35,8 +37,8 @@ class Profile extends Component {
   }
 
   characterList() {
-    return this.state.exercises.map(currentexercise => {
-      return <Character exercise={currentexercise} deleteExercise={this.deleteExercise} key={currentexercise._id}/>;
+    return this.state.characters.map(character => {
+      return <Character character={character}/>;
     });
   }
 
