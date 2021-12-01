@@ -38,7 +38,7 @@ export default class Signup extends Component {
     };
 
     axios.post('http://localhost:5038/users/create', newUser)
-      .then(res => window.location = '/login').catch(error => this.setState({errorSignin: "Invalid sign-in, please try again.", username: '', password: ''}));
+      .then(res => window.location = '/login').catch(error => this.setState({errorSignin: "Invalid sign up, please try again.", username: '', password: ''}));
   };
 
   render() {
@@ -48,7 +48,7 @@ export default class Signup extends Component {
           <div className="row">
             <div className="col-">
               <h3 className="login">Create New User</h3>
-              <h4>{this.state.errorSignin}</h4>
+              <h6 style={{color:"red", textAlign:"center"}}>{this.state.errorSignin}</h6>
               <form onSubmit={this.onSubmit}>
                   <div className="form-group"> 
                   <label className ='entuse'>Username: </label>
