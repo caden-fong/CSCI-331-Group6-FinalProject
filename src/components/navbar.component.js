@@ -14,6 +14,7 @@ class Navbar extends Component {
   onLogout (e) {
     this.props.logout({}); 
     localStorage.clear();
+    window.location = "/login";
   }
 
   render() {

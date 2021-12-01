@@ -9,7 +9,7 @@ router.route('/:id').get((req, res) => {
       .catch(err => res.status(400).json('Error: ' + err));
   });
 
-router.route('/').get((req, res) => {
+router.route('/user/:id').get((req, res) => {
   Character.find()
       .then(characters => res.json(characters))
       .catch(err => res.status(400).json('Error: ' + err));

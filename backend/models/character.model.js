@@ -18,6 +18,10 @@ var spellSchema = new Schema({
 });
 
 const characterSchema = new Schema({
+  user: {
+    type: String,
+    required: true
+  },
   name: {
     type: String,
     required: true,

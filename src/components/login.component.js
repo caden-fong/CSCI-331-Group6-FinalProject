@@ -55,7 +55,7 @@ class Login extends Component {
           <div className="row">
             <div className="col-">
               <h3 className="login">Login</h3>
-              <h4>{this.state.errorSignin}</h4>
+              <h6 style={{color:"red", textAlign:"center"}}>{this.state.errorSignin}</h6>
                 <form onSubmit={this.onSubmit}>
                   <div className="form-group"> 
                   <label className ='entuse'>Username: </label>

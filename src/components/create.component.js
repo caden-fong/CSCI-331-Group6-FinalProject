@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import './../App.css'
+import './../App.css';
+import { useNavigate } from 'react-router';
 
-export default class Create extends Component {
+class Create extends Component {
   constructor(props) {
     super(props);
 
@@ -9,12 +10,16 @@ export default class Create extends Component {
 
     render() {
       if(!this.props.user.id) {
-        window.location = "/login";
         return null;
       }
     return (
-      <div className= "container-fluid">
+      <div className= "container">
       </div>
     )
   }
+}
+
+export default (props) => {
+  const navigate = useNavigate();
+  return (<Create {...props} navigate={navigate}/>);
 }

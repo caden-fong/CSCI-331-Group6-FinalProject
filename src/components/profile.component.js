@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import profilepic from './../profilepic.svg';
 import './../App.css';
 import { useNavigate } from 'react-router';
 
@@ -10,13 +9,11 @@ class Profile extends Component {
 
     render() {
       if(!this.props.user.id) {
-        window.location = "/login";
         return null;
       }
     return (
       <>
         <div className= "container-fluid userinfo">
-          {/* <img src={profilepic} className= "profilelogo" alt="Character Creator Logo"/> */}
           <h3 className="userp">{this.props.user.username}'s Characters</h3>
         </div>
 
@@ -26,7 +23,7 @@ class Profile extends Component {
               <div className="card indchar">
                 <div className="card-body">
                   <h5 className="card-title">Player's Handbook</h5>
-                  <a href="#" class="btn btn-dark stretched-link">View</a>
+                  <a href="#" className="btn btn-dark stretched-link">View</a>
                 </div>
               </div>
             </div>
@@ -34,7 +31,7 @@ class Profile extends Component {
               <div className="card indchar">
                 <div className="card-body">
                   <h5 className="card-title">Player's Handbook</h5>
-                  <a href="#" class="btn btn-dark stretched-link">View</a>
+                  <a href="#" className="btn btn-dark stretched-link">View</a>
                 </div>
               </div>
             </div>
@@ -42,7 +39,7 @@ class Profile extends Component {
               <div className="card indchar">
                 <div className="card-body">
                   <h5 className="card-title">Player's Handbook</h5>
-                  <a href="#" class="btn btn-dark stretched-link">View</a>
+                  <a href="#" className="btn btn-dark stretched-link">View</a>
                 </div>
               </div>
             </div>
