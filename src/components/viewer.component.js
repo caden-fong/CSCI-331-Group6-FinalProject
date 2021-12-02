@@ -3,51 +3,49 @@ import CCLogo from './../CCLogo.svg';
 import p1 from './../p1.jpg';
 import './../App.css'
 import axios from 'axios';
-import { useNavigate } from 'react-router';
-
-const Character = props => (
-  <tr>
-    <td>{props.character.name}</td>
-    <td>{props.character.level}</td>
-    <td>{props.character.race}</td>
-    <td>{props.character.class}</td>
-  </tr>
-)
+import { useNavigate, useParams } from 'react-router';
 
 class Viewer extends Component {
   constructor(props) {
     super(props);
-    this.state = {characters: []}
 
-
+    this.state = {character: {}};
   }
 
   componentDidMount() {
-    axios.get('/characters/')
+    axios.get('/characters/' + this.props.params.id)
         .then(response => {
-            this.setState({ characters: response.data });
-            console.log(this.state.characters);
+            this.setState({ character: response.data });
+            console.log(this.state.character);
         })
         .catch((error) => {
             console.log(error);
         })
   }
 
-  characterList() {
-    return this.state.characters.map(currentcharacter => {
-      return <Character character={currentcharacter}/>;
-    })
-  }
-
 
     render() {
     return (
-      <div></div>
+      <div className="container create">
+        <p>{this.props.user.username}</p>
+          <div className="row creatrow">
+            <div className="col-sm creatview">
+              One of three columns
+            </div>
+            <div className="col-sm creatview">
+              One of three columns
+            </div>
+            <div className="col-sm creatview">
+              One of three columns
+            </div>
+          </div>
+      </div>    
     )
   }
 }
 
 export default (props) => {
+  const params = useParams();
   const navigate = useNavigate();
-  return (<Viewer {...props} navigate={navigate}/>);
+  return (<Viewer {...props} navigate={navigate} params={params}/>);
 }

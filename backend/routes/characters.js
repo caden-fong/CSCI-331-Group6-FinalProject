@@ -5,12 +5,11 @@ let Character = require('../models/character.model');
 router.route('/:id').get((req, res) => {
     Character.findById(req.params.id)
       .then(character => res.json(character))
-      .then(console.log(character))
       .catch(err => res.status(400).json('Error: ' + err));
   });
 
 router.route('/user/:id').get((req, res) => {
-  Character.find({id: req.params.id})
+  Character.find({user: req.params.id})
       .then(characters => res.json(characters))
       .catch(err => res.status(400).json('Error: ' + err));
   });

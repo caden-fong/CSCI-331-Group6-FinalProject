@@ -26,7 +26,7 @@ class Navbar extends Component {
           <div className="collpase navbar-collapse">
           <ul className="navbar-nav mr-auto">
             <li className="navbar-item">
-            <Link to="/profile" className="nav-link">My Characters</Link>
+            <Link to="/profile" className="nav-link">{this.props.user.username}'s Characters</Link>
             </li>
             <li className="navbar-item">
             <Link to="/create" className="nav-link">Create a Character</Link>

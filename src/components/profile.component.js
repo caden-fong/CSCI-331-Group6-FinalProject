@@ -38,7 +38,7 @@ class Profile extends Component {
 
   characterList() {
     return this.state.characters.map(character => {
-      return <Character character={character}/>;
+      return <Character key={character._id} character={character}/>;
     });
   }
 
