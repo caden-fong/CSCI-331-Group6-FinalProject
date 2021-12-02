@@ -38,7 +38,7 @@ class Create extends Component {
       name: '',
       level: 1,
       race: '',
-      class:'Artificer',
+      class:'Barbarian',
       background: '',
       proficiencyBonus: 0,
       hitPoints: 0,
@@ -89,36 +89,48 @@ class Create extends Component {
       proficiencies: {},
       features: {},
       spells: {},
-      sources: ["PHB", "TCE"]
+      sources: ["PHB", "TCE"],
+      fluff: ""
       
     }
 
+    
+      
+      
+  }
+
+  componentDidMount() {
     axios.get('/classes/'+this.state.class)
       .then(response => {
-        console.log("Class!");
-        console.log(response.data);
-        this.setState({classObject: response.data})  
+        this.setState({
+          classObject: response.data,
+          fluff: response.data.class[0].fluff[0].entries[0] 
+        });  
       })
       .catch(function (error) {
         console.log(error);
       })
-
   }
 
   onChangeName(e) {
-    this.state.name = e.target.value;
+    this.setState({name : e.target.value})
   }
+
   onChangeLevel(e) {}
   onChangeRace(e) {}
   onChangeClass(e) {
     axios.get('/classes/'+e.target.value)
       .then(response => {
-        console.log(response.data);
-        this.setState({classObject: response.data, class: e.target.value})  
+        this.setState({
+          classObject: response.data,
+          class: e.target.value,
+        });
+        this.setState({ fluff: this.state.classObject.class[0].fluff[0].entries[0] });
       })
       .catch(function (error) {
         console.log(error);
       })
+      
   }
   onChangeSubclass(e) {}
   onChangeBackground(e) {}
@@ -141,7 +153,7 @@ class Create extends Component {
       name: this.state.name,
       level: 1,
       race: '',
-      class: 'Artificer',
+      class: 'Barbarian',
       background: '',
       proficiencyBonus: 0,
       hitPoints: 0,
@@ -213,8 +225,8 @@ class Create extends Component {
 
     renderSubClassOptions() {
       let classes = this.state.classObject.subclass.filter( subclass => this.state.sources.includes(subclass.source));
-      return classes.map(subclass => {
-        return <option>{subclass.name}</option>;
+      return classes.map((subclass, index) => {
+        return <option key={index}>{subclass.name}</option>;
       })
     }
 
@@ -232,6 +244,7 @@ class Create extends Component {
     renderProficiencyOptions() {}
     renderFeatureOptions() {}
     renderSpellOptions() {}
+    renderAlignmentOptions() {}
 
     render() {
     if(!this.props.user.id) {
@@ -258,7 +271,7 @@ class Create extends Component {
                 className="form-select"
                 onChange={this.onChangeLevel}
               >
-                { this.renderLevelOptions }
+                { this.renderLevelOptions() }
               </select>
               <small>Click to choose a level</small>
             </div>
@@ -268,7 +281,7 @@ class Create extends Component {
                 className="form-select"
                 onChange={this.onChangeRace}
               >
-                { this.renderRaceOptions }
+                { this.renderRaceOptions() }
               </select>
               <small>Click to choose a race</small>
             </div>
@@ -280,21 +293,20 @@ class Create extends Component {
                 className="form-select"
                 onChange={this.onChangeClass}
               >
-                <option>Artificer</option>
-                <option>Barbarian</option>
-                <option>Bard</option>
-                <option>Cleric</option>
-                <option>Druid</option>
-                <option>Fighter</option>
-                <option>Monk</option>
-                <option>Paladin</option>
-                <option>Ranger</option>
-                <option>Rogue</option>
-                <option>Sorcerer</option>
-                <option>Warlock</option>
-                <option>Wizard</option>
+                <option key="Barbarian">Barbarian</option>
+                <option key="Bard">Bard</option>
+                <option key="Cleric">Cleric</option>
+                <option key="Druid">Druid</option>
+                <option key="Fighter">Fighter</option>
+                <option key="Monk">Monk</option>
+                <option key="Paladin">Paladin</option>
+                <option key="Ranger">Ranger</option>
+                <option key="Rogue">Rogue</option>
+                <option key="Sorcerer">Sorcerer</option>
+                <option key="Warlock">Warlock</option>
+                <option key="Wizard">Wizard</option>
               </select>
-              <small>Click to choose a class</small>
+              <small>{this.state.fluff}</small>
             </div>
             <div className="col-sm creat2">
               <label>Subclass</label>
@@ -324,7 +336,7 @@ class Create extends Component {
                 className="form-select"
                 onChange={this.onChangeAlignment}
               >
-                { this.renderAlignmentOptions }
+                { this.renderAlignmentOptions() }
               </select>
               <small>Click to choose an alignment</small>
             </div>
