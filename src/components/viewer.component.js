@@ -3,21 +3,20 @@ import CCLogo from './../CCLogo.svg';
 import p1 from './../p1.jpg';
 import './../App.css'
 import axios from 'axios';
-import { useNavigate } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 
 class Viewer extends Component {
   constructor(props) {
     super(props);
-    this.state = {characters: []}
 
-
+    this.state = {character: {}};
   }
 
   componentDidMount() {
-    axios.get('/characters/')
+    axios.get('/characters/' + this.props.params.id)
         .then(response => {
             this.setState({ characters: response.data });
-            console.log(this.state.characters);
+            console.log(this.state.character);
         })
         .catch((error) => {
             console.log(error);
@@ -46,6 +45,7 @@ class Viewer extends Component {
 }
 
 export default (props) => {
+  const params = useParams();
   const navigate = useNavigate();
-  return (<Viewer {...props} navigate={navigate}/>);
+  return (<Viewer {...props} navigate={navigate} params={params}/>);
 }
