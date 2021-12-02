@@ -30,13 +30,13 @@ class Viewer extends Component {
         <p>{this.props.user.username}</p>
           <div className="row creatrow">
             <div className="col-sm creatview">
-              One of three columns
+              Name:
             </div>
             <div className="col-sm creatview">
-              One of three columns
+              Class:
             </div>
             <div className="col-sm creatview">
-              One of three columns
+              Level:
             </div>
           </div>
       </div>    
