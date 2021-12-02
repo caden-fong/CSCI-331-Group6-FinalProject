@@ -130,7 +130,6 @@ class Create extends Component {
       .catch(function (error) {
         console.log(error);
       })
-      
   }
   onChangeSubclass(e) {}
   onChangeBackground(e) {}
@@ -216,8 +215,6 @@ class Create extends Component {
       .catch(function (error) {
         console.log('Error: create component: ' + error.response.data);
       })
-    
-    // window.location = '/';
     }
 
     renderLevelOptions() {}
@@ -234,7 +231,18 @@ class Create extends Component {
       return <option>No backgrounds</option>;
     }
 
-    renderStatOptions() {}
+    renderStatOptions() {
+      return (<><option>8</option>
+        <option>9</option>
+        <option>10</option>
+        <option>11</option>
+        <option>12</option>
+        <option>13</option>
+        <option>14</option>
+        <option>15</option></>
+        );
+    }
+
     renderSavingThrowOptions() {}
     renderSkillOptions() {}
     renderPersonalityTraitOptions() {}
@@ -331,6 +339,58 @@ class Create extends Component {
           </div>
           <div className="row creatrow">
             <div className="col-sm creat3">
+              <label>Strength</label>
+              <select 
+                className="form-select"
+                onChange={this.onChangeStats}
+              >
+                { this.renderStatOptions() }
+              </select>
+              <small>Click to choose some stats </small>
+            </div>
+            <div className="col-sm creat3">
+              <label>Dexterity</label>
+              <select 
+                className="form-select"
+                onChange={this.onChangeStats}
+              >
+                { this.renderStatOptions() }
+              </select>
+              <small>Click to choose some stats </small>
+            </div>
+            <div className="col-sm creat3">
+              <label>Intelligence</label>
+              <select 
+                className="form-select"
+                onChange={this.onChangeStats}
+              >
+                { this.renderStatOptions() }
+              </select>
+              <small>Click to choose some stats </small>
+            </div>
+            <div className="col-sm creat3">
+              <label>Wisdom</label>
+              <select 
+                className="form-select"
+                onChange={this.onChangeStats}
+              >
+                { this.renderStatOptions() }
+              </select>
+              <small>Click to choose some stats </small>
+            </div>
+            <div className="col-sm creat3">
+              <label>Charisma</label>
+              <select 
+                className="form-select"
+                onChange={this.onChangeStats}
+              >
+                { this.renderStatOptions() }
+              </select>
+              <small>Click to choose some stats </small>
+            </div>
+          </div>
+          <div className="row creatrow">
+            <div className="col-sm creat3">
               <label>Alignment</label>
               <select 
                 className="form-select"
@@ -341,16 +401,6 @@ class Create extends Component {
               <small>Click to choose an alignment</small>
             </div>
             <div className="col-sm creat3">
-              <label>Stats</label>
-              <select 
-                className="form-select"
-                onChange={this.onChangeStats}
-              >
-                { this.renderStatOptions() }
-              </select>
-              <small>Click to choose some stats </small>
-            </div>
-            <div className="col-sm creat3">
               <label>Saving Throws </label>
               <select 
                 className="form-select"
@@ -358,6 +408,16 @@ class Create extends Component {
               >
                 { this.renderSavingThrowOptions() }
               </select>
+            </div>
+            <div className="col-sm creat3">
+              <label>Features</label>
+              <select 
+                className="form-select"
+                onChange={this.onChangeFeatures}
+              >
+                { this.renderFeatureOptions() }
+              </select>
+              <small>Click to choose your features</small>
             </div>
           </div>
           <div className="row creatrow">
@@ -425,16 +485,6 @@ class Create extends Component {
             </div>
           </div>
           <div className="row creatrow">
-            <div className="col-sm creat2">
-              <label>Features</label>
-              <select 
-                className="form-select"
-                onChange={this.onChangeFeatures}
-              >
-                { this.renderFeatureOptions() }
-              </select>
-              <small>Click to choose your features</small>
-            </div>
             <div className="col-sm creat2">
               <label>Spells</label>
               <select 
