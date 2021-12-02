@@ -5,15 +5,6 @@ import './../App.css'
 import axios from 'axios';
 import { useNavigate } from 'react-router';
 
-const Character = props => (
-  <tr>
-    <td>{props.character.name}</td>
-    <td>{props.character.level}</td>
-    <td>{props.character.race}</td>
-    <td>{props.character.class}</td>
-  </tr>
-)
-
 class Viewer extends Component {
   constructor(props) {
     super(props);
@@ -33,16 +24,23 @@ class Viewer extends Component {
         })
   }
 
-  characterList() {
-    return this.state.characters.map(currentcharacter => {
-      return <Character character={currentcharacter}/>;
-    })
-  }
-
 
     render() {
     return (
-      <div></div>
+      <div className="container create">
+        <p>{this.props.user.username}</p>
+          <div className="row creatrow">
+            <div className="col-sm creatview">
+              One of three columns
+            </div>
+            <div className="col-sm creatview">
+              One of three columns
+            </div>
+            <div className="col-sm creatview">
+              One of three columns
+            </div>
+          </div>
+      </div>    
     )
   }
 }
