@@ -212,7 +212,7 @@ class Create extends Component {
     console.log('ID: ' + this.props.user.id);
 
     axios.post('/characters/create/'+this.props.user.id, character)
-      .then(res => console.log(res.data))
+      .then(res => {this.props.navigate("/profile")})
       .catch(function (error) {
         console.log('Error: create component: ' + error.response.data);
       })
