@@ -30,13 +30,13 @@ class Viewer extends Component {
         <p>{this.props.user.username}</p>
           <div className="row creatrow">
             <div className="col-sm creatview">
-              Name:
+              Name: {this.state.character.name}
             </div>
             <div className="col-sm creatview">
-              Class:
+              Class: {this.state.character.class}
             </div>
             <div className="col-sm creatview">
-              Level:
+              Level: {this.state.character.level}
             </div>
           </div>
       </div>    
