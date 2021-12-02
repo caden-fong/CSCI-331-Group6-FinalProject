@@ -5,7 +5,6 @@ import './../App.css'
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router';
 
-
 class Viewer extends Component {
   constructor(props) {
     super(props);
@@ -21,17 +20,26 @@ class Viewer extends Component {
         })
         .catch((error) => {
             console.log(error);
-        });
+        })
   }
+
 
     render() {
     return (
-      <div>{this.state.character.name}
-      {this.state.character.level}
-      {this.state.character.skills}
-      {this.state.character.race}
-      </div>
-
+      <div className="container create">
+        <p>{this.props.user.username}</p>
+          <div className="row creatrow">
+            <div className="col-sm creatview">
+              One of three columns
+            </div>
+            <div className="col-sm creatview">
+              One of three columns
+            </div>
+            <div className="col-sm creatview">
+              One of three columns
+            </div>
+          </div>
+      </div>    
     )
   }
 }
