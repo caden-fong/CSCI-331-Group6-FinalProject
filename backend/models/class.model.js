@@ -10,6 +10,6 @@ const classSchema = new Schema({
   subclassFeature: []
 })
 
-const Class = mongoose.model('Class', classSchema);
+const Class = mongoose.model('Class', classSchema, 'classes');
 
 module.exports = Class;
