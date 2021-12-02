@@ -262,8 +262,19 @@
     text-align: left;
     font-family: 'Fira Sans', sans-serif;
     font-size: 13pt;
-    border-style: solid;
-    border-width: thin;
-    margin-top: 50px;
+    border-style:double;
+    border-width:thick;
+    border-color: black;
+    margin-top: 60px;
+    margin-bottom: 60px;
     margin-left: 40px;
+    padding: 20px;
+    border-radius: 15%;
+}
+
+.del {
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 13pt;
+    margin-bottom: 60px;
+    margin-top: 60px;
 }
