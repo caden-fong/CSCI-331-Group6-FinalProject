@@ -27,7 +27,7 @@ class Viewer extends Component {
     render() {
     return (
       <div className="container create">
-        <p>{this.props.user.username}</p>
+        <p>{this.state.character.name} the {this.state.character.class}</p>
           <div className="row creatrow">
             <div className="col-sm creatview">
               Name: {this.state.character.name}
@@ -38,7 +38,53 @@ class Viewer extends Component {
             <div className="col-sm creatview">
               Level: {this.state.character.level}
             </div>
+            <div className="col-sm creatview">
+              Alignment: {}
+            </div>
           </div>
+          <div className="row creatrow">
+            <div className="col-sm creatview">
+              Race: {}
+            </div>
+            <div className="col-sm creatview">
+              Subclass: {}
+            </div>
+            <div className="col-sm creatview">
+              Background: {}
+            </div>
+          </div>
+          <div className="row creatrow">
+            <div className="col-sm creatview">
+              Strength: {}
+            </div>
+            <div className="col-sm creatview">
+              Dexterity: {}
+            </div>
+            <div className="col-sm creatview">
+              Constitution: {}
+            </div>
+            <div className="col-sm creatview">
+              Intelligence: {}
+            </div>
+            <div className="col-sm creatview">
+              Wisdom: {}
+            </div>
+            <div className="col-sm creatview">
+              Charisma: {}
+            </div>
+          </div>
+          <div className="row creatrow">
+            <div className="col-sm creatview">
+              Proficency Bonus: {}
+            </div>
+            <div className="col-sm creatview">
+              Inspiration: {}
+            </div>
+            <div className="col-sm creatview">
+              Perception: {}
+            </div>
+          </div>
+          <input type="submit" value="Delete" className="btn btn-dark del" />
       </div>    
     )
   }

@@ -23,11 +23,13 @@ const exercisesRouter = require('./routes/exercises');
 const usersRouter = require('./routes/users');
 const characterRouter = require('./routes/characters');
 const classRouter = require('./routes/classes');
+const spellRouter = require('./routes/spells');
 
 app.use('/exercises', exercisesRouter);
 app.use('/users', usersRouter);
 app.use('/characters', characterRouter);
 app.use('/classes', classRouter);
+app.use('/spells', spellRouter);
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
