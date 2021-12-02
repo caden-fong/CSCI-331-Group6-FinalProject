@@ -39,18 +39,18 @@ class Viewer extends Component {
               Level: {this.state.character.level}
             </div>
             <div className="col-sm creatview">
-              Alignment: {}
+              Alignment: {this.state.character.alignment}
             </div>
           </div>
           <div className="row creatrow">
             <div className="col-sm creatview">
-              Race: {}
+              Race: {this.state.character.race}
             </div>
             <div className="col-sm creatview">
               Subclass: {}
             </div>
             <div className="col-sm creatview">
-              Background: {}
+              Background: {this.state.character.background}
             </div>
           </div>
           <div className="row creatrow">
@@ -75,7 +75,7 @@ class Viewer extends Component {
           </div>
           <div className="row creatrow">
             <div className="col-sm creatview">
-              Proficency Bonus: {}
+              Proficency Bonus: {this.state.character.proficiencyBonus}
             </div>
             <div className="col-sm creatview">
               Inspiration: {}
