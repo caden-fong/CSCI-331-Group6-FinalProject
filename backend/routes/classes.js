@@ -3,7 +3,7 @@ const router = require('express').Router();
 let CharacterClass = require('../models/class.model');
 
 router.route('/:name').get((req, res) => {
-    CharacterClass.findOne({ name: req.params.name, source: "PHB" })
+    CharacterClass.findOne({ name: req.params.name })
       .then(characterCharacterClass => res.json(characterCharacterClass))
       .catch(err => res.status(400).json('Error: ' + err));
   });
