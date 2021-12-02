@@ -15,7 +15,7 @@ class Viewer extends Component {
   componentDidMount() {
     axios.get('/characters/' + this.props.params.id)
         .then(response => {
-            this.setState({ characters: response.data });
+            this.setState({ character: response.data });
             console.log(this.state.character);
         })
         .catch((error) => {

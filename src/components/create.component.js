@@ -88,7 +88,9 @@ class Create extends Component {
       flaws: '',
       proficiencies: {},
       features: {},
-      spells: {}
+      spells: {},
+      sources: ["PHB", "TCE"]
+      
     }
 
     axios.get('/classes/'+this.state.class)
@@ -206,15 +208,30 @@ class Create extends Component {
     // window.location = '/';
     }
 
-    
-
-    
+    renderLevelOptions() {}
+    renderRaceOptions() {}
 
     renderSubClassOptions() {
-      return this.state.classObject.subclass.map(subclass => {
+      let classes = this.state.classObject.subclass.filter( subclass => this.state.sources.includes(subclass.source));
+      return classes.map(subclass => {
         return <option>{subclass.name}</option>;
       })
-  }
+    }
+
+    renderBackgroundOptions() {
+      return <option>No backgrounds</option>;
+    }
+
+    renderStatOptions() {}
+    renderSavingThrowOptions() {}
+    renderSkillOptions() {}
+    renderPersonalityTraitOptions() {}
+    renderIdealOptions() {}
+    renderBondOptions() {}
+    renderFlawOptions() {}
+    renderProficiencyOptions() {}
+    renderFeatureOptions() {}
+    renderSpellOptions() {}
 
     render() {
     if(!this.props.user.id) {
@@ -231,24 +248,27 @@ class Create extends Component {
                 className="form-control"
                 type="text"
                 onChange={this.onChangeName}
-              ></input>
+              >
+              </input>
               <small>Choose a character name</small>
             </div>
             <div className="col-sm creat">
               <label>Level</label>
-              <select className="form-select">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
+              <select 
+                className="form-select"
+                onChange={this.onChangeLevel}
+              >
+                { this.renderLevelOptions }
               </select>
               <small>Click to choose a level</small>
             </div>
             <div className="col-sm creat">
               <label>Race</label>
-              <select className="form-select">
-                <option>Human</option>
+              <select 
+                className="form-select"
+                onChange={this.onChangeRace}
+              >
+                { this.renderRaceOptions }
               </select>
               <small>Click to choose a race</small>
             </div>
@@ -259,7 +279,7 @@ class Create extends Component {
               <select 
                 className="form-select"
                 onChange={this.onChangeClass}
-                >
+              >
                 <option>Artificer</option>
                 <option>Barbarian</option>
                 <option>Bard</option>
@@ -277,77 +297,147 @@ class Create extends Component {
               <small>Click to choose a class</small>
             </div>
             <div className="col-sm creat2">
-              <label>Background</label>
-              <select className="form-select">
-                <option>class</option>
-              </select>
-              <small>Click to choose a background</small>
-            </div>
-            <div className="col-sm creat2">
-              One of three columns
-            </div>
-          </div>
-          <div className="row creatrow">
-            <div className="col-sm creat3">
               <label>Subclass</label>
               <select 
                 className="form-select"
                 onChange={this.onChangeSubclass}
-                >
+              >
                 { this.renderSubClassOptions() }
               </select>
-              <small>Click to choose a class</small>
+              <small>Click to choose a subclass</small>
             </div>
-            <div className="col-sm creat3">
+            <div className="col-sm creat2">
               <label>Background</label>
-              <select className="form-select">
-                <option>class</option>
+              <select 
+                className="form-select"
+                onChange={this.onChangeBackground}
+              >
+                { this.renderBackgroundOptions() }
               </select>
               <small>Click to choose a background</small>
             </div>
+          </div>
+          <div className="row creatrow">
             <div className="col-sm creat3">
-              One of three columns
+              <label>Alignment</label>
+              <select 
+                className="form-select"
+                onChange={this.onChangeAlignment}
+              >
+                { this.renderAlignmentOptions }
+              </select>
+              <small>Click to choose an alignment</small>
+            </div>
+            <div className="col-sm creat3">
+              <label>Stats</label>
+              <select 
+                className="form-select"
+                onChange={this.onChangeStats}
+              >
+                { this.renderStatOptions() }
+              </select>
+              <small>Click to choose some stats </small>
+            </div>
+            <div className="col-sm creat3">
+              <label>Saving Throws </label>
+              <select 
+                className="form-select"
+                onChange={this.onChangeSavingThrows}
+              >
+                { this.renderSavingThrowOptions() }
+              </select>
             </div>
           </div>
           <div className="row creatrow">
             <div className="col-sm creat4">
-              <label>Class</label>
-              <select className="form-select">
-                <option>class</option>
+              <label>Skills</label>
+              <select 
+                className="form-select"
+                onChange={this.onChangeSkills}
+              >
+                { this.renderSkillOptions() }
               </select>
-              <small>Click to choose a class</small>
+              <small>Click to choose your skill proficiencies</small>
             </div>
             <div className="col-sm creat4">
-              <label>Background</label>
-              <select className="form-select">
-                <option>class</option>
+              <label>Personality Traits</label>
+              <select 
+                className="form-select"
+                onChange={this.onChangePersonalityTraits}
+              >
+                { this.renderPersonalityTraitOptions() }
               </select>
-              <small>Click to choose a background</small>
+              <small>Click to choose personality traits</small>
             </div>
             <div className="col-sm creat4">
-              One of three columns
+              <label>Ideals</label>
+              <select 
+                className="form-select"
+                onChange={this.onChangeIdeals}
+              >
+                { this.renderIdealOptions() }
+              </select>
+              <small>Click to choose your ideals</small>
             </div>
           </div>
           <div className="row creatrow">
-            <div className="col-sm creat5">
-              <label>Class</label>
-              <select className="form-select">
-                <option>class</option>
+            <div className="col-sm creat2">
+              <label>Bonds</label>
+              <select 
+                className="form-select"
+                onChange={this.onChangeBonds}
+              >
+                { this.renderBondOptions() }
               </select>
-              <small>Click to choose a class</small>
+              <small>Click to choose your bonds</small>
             </div>
-            <div className="col-sm creat5">
-              <label>Background</label>
-              <select className="form-select">
-                <option>class</option>
+            <div className="col-sm creat2">
+              <label>Flaws</label>
+              <select 
+                className="form-select"
+                onChange={this.onChangeFlaws}
+              >
+                { this.renderFlawOptions() }
               </select>
-              <small>Click to choose a background</small>
+              <small>Click to choose your bonds</small>
+            </div>
+            <div className="col-sm creat2">
+              <label>Proficiencies</label>
+              <select 
+                className="form-select"
+                onChange={this.onChangeProficiencies}
+              >
+                { this.renderProficiencyOptions() }
+              </select>
+              <small> Click to choose your other Proficiencies </small>
+            </div>
+          </div>
+          <div className="row creatrow">
+            <div className="col-sm creat2">
+              <label>Features</label>
+              <select 
+                className="form-select"
+                onChange={this.onChangeFeatures}
+              >
+                { this.renderFeatureOptions() }
+              </select>
+              <small>Click to choose your features</small>
+            </div>
+            <div className="col-sm creat2">
+              <label>Spells</label>
+              <select 
+                className="form-select"
+                onChange={this.onChangeSpells}
+              >
+                { this.renderSpellOptions() }
+              </select>
+              <small>Click to choose your spells</small>
             </div>
             <div className="col-sm creat5">
               <input type="submit" value="Submit" className="btn btn-dark" />
             </div>
           </div>
-         </form> 
+        </form> 
       </div>
     )
   }
