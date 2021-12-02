@@ -217,8 +217,43 @@ class Create extends Component {
       })
     }
 
-    renderLevelOptions() {}
-    renderRaceOptions() {}
+    renderLevelOptions() {
+      return (<><option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+        <option>5</option>
+        <option>6</option>
+        <option>7</option>
+        <option>8</option>
+        <option>9</option>
+        <option>10</option>
+        <option>11</option>
+        <option>12</option>
+        <option>13</option>
+        <option>14</option>
+        <option>15</option>
+        <option>16</option>
+        <option>17</option>
+        <option>18</option>
+        <option>19</option>
+        <option>20</option></>
+        );
+    }
+
+    renderRaceOptions() {
+      return (<>
+        <option>Dwarf</option>
+        <option>Elf</option>
+        <option>Halfling</option>
+        <option>Human</option>
+        <option>Dragonborn</option>
+        <option>Gnome</option>
+        <option>Half-Elf</option>
+        <option>Half-Orc</option>
+        <option>Tiefling</option>
+      </>);
+    }
 
     renderSubClassOptions() {
       let classes = this.state.classObject.subclass.filter( subclass => this.state.sources.includes(subclass.source));
@@ -228,7 +263,21 @@ class Create extends Component {
     }
 
     renderBackgroundOptions() {
-      return <option>No backgrounds</option>;
+      return (<>
+        <option>Acolyte</option>
+        <option>Charlatan</option>
+        <option>Criminal</option>
+        <option>Entertainer</option>
+        <option>Folk Hero</option>
+        <option>Guild Artisan</option>
+        <option>Hermit</option>
+        <option>Noble</option>
+        <option>Outlander</option>
+        <option>Sage</option>
+        <option>Sailor</option>
+        <option>Soldier</option>
+        <option>Urchin</option>
+      </>);
     }
 
     renderStatOptions() {
@@ -243,7 +292,15 @@ class Create extends Component {
         );
     }
 
-    renderSavingThrowOptions() {}
+    renderSavingThrowOptions() {
+      return (<>
+        <option>Strength</option>
+        <option>Dexterity</option>
+        <option>Intelligence</option>
+        <option>Wisdom</option>
+        <option>Charisma</option>
+      </>); 
+    }
     renderSkillOptions() {}
     renderPersonalityTraitOptions() {}
     renderIdealOptions() {}
@@ -252,7 +309,20 @@ class Create extends Component {
     renderProficiencyOptions() {}
     renderFeatureOptions() {}
     renderSpellOptions() {}
-    renderAlignmentOptions() {}
+
+    renderAlignmentOptions() {
+      return (<>
+        <option>Lawful Good</option>
+        <option>Neutral Good</option>
+        <option>Chaotic Good</option>
+        <option>Lawful Neutral</option>
+        <option>True Neutral</option>
+        <option>Chaotic Neutral</option>
+        <option>Lawful Evil</option>
+        <option>Neutral Evil</option>
+        <option>Chaotic Evil</option>
+      </>);
+    }
 
     render() {
     if(!this.props.user.id) {
@@ -346,7 +416,7 @@ class Create extends Component {
               >
                 { this.renderStatOptions() }
               </select>
-              <small>Click to choose some stats </small>
+              <small>Click to choose stat number </small>
             </div>
             <div className="col-sm creat3">
               <label>Dexterity</label>
@@ -356,7 +426,7 @@ class Create extends Component {
               >
                 { this.renderStatOptions() }
               </select>
-              <small>Click to choose some stats </small>
+              <small>Click to choose stat number </small>
             </div>
             <div className="col-sm creat3">
               <label>Intelligence</label>
@@ -366,7 +436,7 @@ class Create extends Component {
               >
                 { this.renderStatOptions() }
               </select>
-              <small>Click to choose some stats </small>
+              <small>Click to choose stat number </small>
             </div>
             <div className="col-sm creat3">
               <label>Wisdom</label>
@@ -376,7 +446,7 @@ class Create extends Component {
               >
                 { this.renderStatOptions() }
               </select>
-              <small>Click to choose some stats </small>
+              <small>Click to choose stat number </small>
             </div>
             <div className="col-sm creat3">
               <label>Charisma</label>
@@ -386,7 +456,7 @@ class Create extends Component {
               >
                 { this.renderStatOptions() }
               </select>
-              <small>Click to choose some stats </small>
+              <small>Click to choose stat number </small>
             </div>
           </div>
           <div className="row creatrow">
@@ -408,6 +478,7 @@ class Create extends Component {
               >
                 { this.renderSavingThrowOptions() }
               </select>
+              <small>Click to choose your saving throw</small>
             </div>
             <div className="col-sm creat3">
               <label>Features</label>
