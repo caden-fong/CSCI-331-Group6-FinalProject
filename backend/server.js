@@ -24,12 +24,16 @@ const usersRouter = require('./routes/users');
 const characterRouter = require('./routes/characters');
 const classRouter = require('./routes/classes');
 const spellRouter = require('./routes/spells');
+const backgroundRouter = require('./routes/backgrounds');
+const raceRouter = require('./routes/races');
 
 app.use('/exercises', exercisesRouter);
 app.use('/users', usersRouter);
 app.use('/characters', characterRouter);
 app.use('/classes', classRouter);
 app.use('/spells', spellRouter);
+app.use('/backgrounds', backgroundRouter);
+app.use('/races', raceRouter);
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);

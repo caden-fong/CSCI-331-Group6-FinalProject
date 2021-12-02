@@ -4,13 +4,13 @@ let CharacterClass = require('../models/class.model');
 
 router.route('/:name').get((req, res) => {
     CharacterClass.findOne({ name: req.params.name })
-      .then(characterCharacterClass => res.json(characterCharacterClass))
+      .then(characterClass => res.json(characterClass))
       .catch(err => res.status(400).json('Error: ' + err));
   });
 
 router.route('/').get((req, res) => {
   CharacterClass.find()
-      .then(characterCharacterClasses => res.json(characterCharacterClasses))
+      .then(characterClasses => res.json(characterClasses))
       .catch(err => res.status(400).json('Error: ' + err));
   });
 

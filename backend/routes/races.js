@@ -1,22 +1,23 @@
 
 const router = require('express').Router();
-let Spell = require('../models/spell.model');
+let Race = require('../models/race.model');
 
-router.route('/name/:name').get((req, res) => {
-    Spell.findOne({ name: req.params.name })
-      .then(spell => res.json(spell))
+router.route('/:name').get((req, res) => {
+    Race.findOne({ name: req.params.name })
+      .then(race => res.json(race))
       .catch(err => res.status(400).json('Error: ' + err));
   });
 
-router.route('/source/:source').get((req, res) => {
-  Spell.find({ source: req.params.source })
+router.route('/:source').get((req, res) => {
+  Race.find({ source: req.params.source })
     .then(race => res.json(race))
     .catch(err => res.status(400).json('Error: ' + err));
 });
 
+
 router.route('/').get((req, res) => {
-  Spell.find()
-      .then(spell => res.json(spell))
+  Race.find()
+      .then(race => res.json(race))
       .catch(err => res.status(400).json('Error: ' + err));
   });
 
