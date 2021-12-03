@@ -3,6 +3,15 @@ import './../App.css';
 import { useNavigate } from 'react-router';
 import axios from 'axios';
 
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
+}
+
+function lowerFirstLetter(string) {
+  return string.charAt(0).toLowerCase() + string.slice(1);
+}
+
+
 class Create extends Component {
   constructor(props) {
     super(props);
@@ -14,7 +23,6 @@ class Create extends Component {
     this.onChangeSubclass = this.onChangeSubclass.bind(this);
     this.onChangeBackground = this.onChangeBackground.bind(this);
     this.onChangeAlignment = this.onChangeAlignment.bind(this);
-    this.onChangeStats = this.onChangeStats.bind(this);
     this.onChangeSavingThrows = this.onChangeSavingThrows.bind(this);
     this.onChangeSkills = this.onChangeSkills.bind(this);
     this.onChangePersonalityTraits = this.onChangePersonalityTraits.bind(this);
@@ -25,6 +33,13 @@ class Create extends Component {
     this.onChangeFeatures = this.onChangeFeatures.bind(this);
     this.onChangeSpells = this.onChangeSpells.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+
+    this.onChangeStrength = this.onChangeStrength.bind(this);
+    this.onChangeDexterity = this.onChangeDexterity.bind(this);
+    this.onChangeConstitution = this.onChangeConstitution.bind(this);
+    this.onChangeIntelligence = this.onChangeIntelligence.bind(this);
+    this.onChangeWisdom = this.onChangeWisdom.bind(this);
+    this.onChangeCharisma = this.onChangeCharisma.bind(this);
     
     this.state = {
       classObject: {
@@ -39,7 +54,8 @@ class Create extends Component {
       level: 1,
       race: '',
       class:'Barbarian',
-      background: '',
+      subclass: 'Path of the Berserker',
+      background: 'Acolyte',
       proficiencyBonus: 0,
       hitPoints: 0,
       speed: 0,
@@ -82,15 +98,21 @@ class Create extends Component {
         stealth: false,
         survival: false
       },
-      personalityTraits: '',
-      ideals: '',
-      bonds: '',
-      flaws: '',
+      personalityTraits: 'Click to choose your personality trait',
+      ideals: 'Click to choose your ideal',
+      bonds: 'Click to choose your bond',
+      flaws: 'Click to choose your flaw',
       proficiencies: {},
       features: {},
       spells: {},
       sources: ["PHB", "TCE"],
-      fluff: ""
+      fluff: "",
+      subclassDescription: '',
+      backgroundObject: {},
+      backgroundsArray: [],
+      backgroundDescription: '',
+      isLoading: true,
+      characteristics: []
       
     }
 
@@ -104,12 +126,31 @@ class Create extends Component {
       .then(response => {
         this.setState({
           classObject: response.data,
-          fluff: response.data.class[0].fluff[0].entries[0] 
-        });  
+          fluff: response.data.class[0].fluff[0].entries[0],
+        });
+        let subclassFluff = response.data.subclassFeature.filter( subclass => subclass.name == this.state.subclass);
+        this.setState({ subclassDescription: subclassFluff[0].entries[0]});
       })
       .catch(function (error) {
         console.log(error);
       })
+    axios.get('/backgrounds/')
+      .then(response => {
+        this.setState({ backgroundArray: response.data });
+        let newbackground = response.data.find( background => background.name == this.state.background);
+        console.log(newbackground);
+        this.setState({ 
+          backgroundObject: newbackground,
+          backgroundDescription: newbackground.entries[1].entries[0],
+          characteristics: newbackground.entries.find(entry => entry.name == "Suggested Characteristics"),
+          isLoading: false
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+
+
   }
 
   onChangeName(e) {
@@ -131,19 +172,85 @@ class Create extends Component {
         console.log(error);
       })
   }
-  onChangeSubclass(e) {}
-  onChangeBackground(e) {}
-  onChangeAlignment(e) {}
-  onChangeStats(e) {}
+  onChangeSubclass(e) { 
+    let subclassFluff = this.state.classObject.subclassFeature.find( subclass => subclass.name == e.target.value);
+    this.setState({ subclass: e.target.value, subclassDescription: subclassFluff[0].entries[0]});
+  }
+  onChangeBackground(e) {
+    let newbackground = this.state.backgroundArray.find( background => background.name == e.target.value);
+    this.setState({ 
+      background: e.target.value,
+      backgroundObject: newbackground, 
+      backgroundDescription: newbackground.entries[1].entries[0]
+    });
+  }
+  onChangeAlignment(e) { this.setState({ alignment: e.target.value }) }
   onChangeSavingThrows(e) {}
-  onChangeSkills(e) {}
-  onChangePersonalityTraits(e) {}
-  onChangeIdeals(e) {}
-  onChangeBonds(e) {}
-  onChangeFlaws(e) {}
+  onChangeSkills(e) {
+    let newSkill = lowerFirstLetter(e.target.id);
+    let skillBlock = this.state.skills;
+    skillBlock[newSkill] = e.target.checked;
+    this.setState({ skills : skillBlock })
+  }
+  onChangePersonalityTraits(e) {
+    let newTrait = this.state.characteristics.entries[2].rows[e.target.value-1][1] 
+    this.setState({ 
+      personalityTraits: newTrait
+    })
+  }
+  onChangeIdeals(e) {
+    let newIdeal = this.state.characteristics.entries[2].rows[e.target.value-1][1] 
+    this.setState({ 
+      ideals: newIdeal
+    })
+  }
+  onChangeBonds(e) {
+    let newBond = this.state.characteristics.entries[2].rows[e.target.value-1][1] 
+    this.setState({ 
+      bonds: newBond
+    })
+  }
+  onChangeFlaws(e) {
+    let newFlaw = this.state.characteristics.entries[2].rows[e.target.value-1][1] 
+    this.setState({ 
+      flaws: newFlaw
+    })
+  }
   onChangeProficiencies(e) {}
   onChangeFeatures(e) {}
   onChangeSpells(e) {}
+
+  onChangeStrength(e) {
+    let newStats = this.state.stats
+    newStats.strength = e.target.value
+    this.setState({ stats : newStats })
+  }
+  onChangeDexterity(e) {
+    let newStats = this.state.stats
+    newStats.dexterity = e.target.value
+    this.setState({ stats : newStats })
+  }
+  onChangeConstitution(e) {
+    let newStats = this.state.stats
+    newStats.constitution = e.target.value
+    this.setState({ stats : newStats })
+  }
+  onChangeIntelligence(e) {
+    let newStats = this.state.stats
+    newStats.intelligence = e.target.value
+    this.setState({ stats : newStats })
+  }
+  onChangeWisdom(e) {
+    let newStats = this.state.stats
+    newStats.wisdom = e.target.value
+    this.setState({ stats : newStats })
+  }
+  onChangeCharisma(e) {
+    let newStats = this.state.stats
+    newStats.charisma = e.target.value
+    this.setState({ stats : newStats })
+  }
+
 
   onSubmit(e) {
     e.preventDefault();
@@ -293,19 +400,57 @@ class Create extends Component {
     }
 
     renderSavingThrowOptions() {
-      return (<>
-        <option>Strength</option>
-        <option>Dexterity</option>
-        <option>Intelligence</option>
-        <option>Wisdom</option>
-        <option>Charisma</option>
-      </>); 
+      return Object.keys(this.state.savingThrows).map((stat) => {
+        return (
+          <div 
+                className="form-check"
+                onChange={this.onChangeSavingThrows}
+          >
+          <input className="form-check-input" type="checkbox" value="" id={stat} />
+          <label className="form-check-label" for={stat}>
+          {capitalizeFirstLetter(stat)}
+          </label>
+          </div>
+        )
+      }) 
     }
-    renderSkillOptions() {}
-    renderPersonalityTraitOptions() {}
-    renderIdealOptions() {}
-    renderBondOptions() {}
-    renderFlawOptions() {}
+    renderSkillOptions() {
+      return Object.keys(this.state.skills).map((skill, index) => {
+        return (
+          <div 
+                className="form-check"
+                onChange={this.onChangeSkills}
+          >
+          <input className="form-check-input" type="checkbox" value="" id={skill} />
+          <label className="form-check-label" for={skill}>
+          {capitalizeFirstLetter(skill)}
+          </label>
+          </div>
+        )
+      })
+    }
+    renderPersonalityTraitOptions() {
+      return this.state.characteristics.entries[2].rows.map((trait, index) => {
+        return <option key={index}>{trait[0]}</option>;
+      })
+    }
+    renderIdealOptions() {
+      return this.state.characteristics.entries[2].rows.map((ideal, index) => {
+        return <option key={index}>{ideal[0]}</option>;
+      })
+    }
+    
+    renderBondOptions() {
+      return this.state.characteristics.entries[2].rows.map((bond, index) => {
+        return <option key={index}>{bond[0]}</option>;
+      })
+    }
+
+    renderFlawOptions() {
+      return this.state.characteristics.entries[2].rows.map((flaw, index) => {
+        return <option key={index}>{flaw[0]}</option>;
+      })
+    }
     renderProficiencyOptions() {}
     renderFeatureOptions() {}
     renderSpellOptions() {}
@@ -327,6 +472,40 @@ class Create extends Component {
     render() {
     if(!this.props.user.id) {
       return null;
+    }
+    if (this.state.isLoading) {
+      return (
+        <div className="container create">
+        <p>Create a Character</p>
+          <div className="row creatrow">
+            <div className="col-sm creat">
+            </div>
+            <div className="col-sm creat">
+              Loading
+            </div>
+            <div className="col-sm creat">
+            </div>
+          </div>
+          <div className="row creatrow">
+            <div className="col-sm creat2">
+            </div>
+            <div className="col-sm creat2">
+              Please
+            </div>
+            <div className="col-sm creat2">
+            </div>
+          </div>
+          <div className="row creatrow">
+            <div className="col-sm creat5">
+            </div>
+            <div className="col-sm creat5">
+              Wait...
+            </div>
+            <div className="col-sm creat5">
+            </div>
+          </div>
+        </div>
+      )
     }
     return (
       <div className="container create">
@@ -394,7 +573,7 @@ class Create extends Component {
               >
                 { this.renderSubClassOptions() }
               </select>
-              <small>Click to choose a subclass</small>
+              <small>{this.state.subclassDescription}</small>
             </div>
             <div className="col-sm creat2">
               <label>Background</label>
@@ -404,7 +583,7 @@ class Create extends Component {
               >
                 { this.renderBackgroundOptions() }
               </select>
-              <small>Click to choose a background</small>
+              <small>{ this.state.backgroundDescription }</small>
             </div>
           </div>
           <div className="row creatrow">
@@ -412,7 +591,7 @@ class Create extends Component {
               <label>Strength</label>
               <select 
                 className="form-select"
-                onChange={this.onChangeStats}
+                onChange={this.onChangeStrength}
               >
                 { this.renderStatOptions() }
               </select>
@@ -422,7 +601,7 @@ class Create extends Component {
               <label>Dexterity</label>
               <select 
                 className="form-select"
-                onChange={this.onChangeStats}
+                onChange={this.onChangeDexterity}
               >
                 { this.renderStatOptions() }
               </select>
@@ -432,7 +611,7 @@ class Create extends Component {
               <label>Intelligence</label>
               <select 
                 className="form-select"
-                onChange={this.onChangeStats}
+                onChange={this.onChangeIntelligence}
               >
                 { this.renderStatOptions() }
               </select>
@@ -442,7 +621,7 @@ class Create extends Component {
               <label>Wisdom</label>
               <select 
                 className="form-select"
-                onChange={this.onChangeStats}
+                onChange={this.onChangeWisdom}
               >
                 { this.renderStatOptions() }
               </select>
@@ -452,7 +631,7 @@ class Create extends Component {
               <label>Charisma</label>
               <select 
                 className="form-select"
-                onChange={this.onChangeStats}
+                onChange={this.onChangeCharisma}
               >
                 { this.renderStatOptions() }
               </select>
@@ -472,13 +651,8 @@ class Create extends Component {
             </div>
             <div className="col-sm creat3">
               <label>Saving Throws </label>
-              <select 
-                className="form-select"
-                onChange={this.onChangeSavingThrows}
-              >
                 { this.renderSavingThrowOptions() }
-              </select>
-              <small>Click to choose your saving throw</small>
+              <small>Click to choose your saving throws</small>
             </div>
             <div className="col-sm creat3">
               <label>Features</label>
@@ -494,12 +668,9 @@ class Create extends Component {
           <div className="row creatrow">
             <div className="col-sm creat4">
               <label>Skills</label>
-              <select 
-                className="form-select"
-                onChange={this.onChangeSkills}
-              >
+
                 { this.renderSkillOptions() }
-              </select>
+
               <small>Click to choose your skill proficiencies</small>
             </div>
             <div className="col-sm creat4">
@@ -510,7 +681,7 @@ class Create extends Component {
               >
                 { this.renderPersonalityTraitOptions() }
               </select>
-              <small>Click to choose personality traits</small>
+              <small>{this.state.personalityTraits}</small>
             </div>
             <div className="col-sm creat4">
               <label>Ideals</label>
@@ -520,7 +691,7 @@ class Create extends Component {
               >
                 { this.renderIdealOptions() }
               </select>
-              <small>Click to choose your ideals</small>
+              <small>{this.state.ideals}</small>
             </div>
           </div>
           <div className="row creatrow">
@@ -532,7 +703,7 @@ class Create extends Component {
               >
                 { this.renderBondOptions() }
               </select>
-              <small>Click to choose your bonds</small>
+              <small> {this.state.bonds}</small>
             </div>
             <div className="col-sm creat2">
               <label>Flaws</label>
@@ -542,7 +713,7 @@ class Create extends Component {
               >
                 { this.renderFlawOptions() }
               </select>
-              <small>Click to choose your bonds</small>
+              <small>{this.state.flaws} </small>
             </div>
             <div className="col-sm creat2">
               <label>Proficiencies</label>
