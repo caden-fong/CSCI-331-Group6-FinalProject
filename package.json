@@ -22,7 +22,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "https://secure-reaches-09322.herokuapp.com",
+  "proxy": "https://character-companion-api.herokuapp.com",
   "eslintConfig": {
     "extends": [
       "react-app",

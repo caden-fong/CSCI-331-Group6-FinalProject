@@ -2,6 +2,7 @@
 const router = require('express').Router();
 let Character = require('../models/character.model');
 
+
 router.route('/:id').get((req, res) => {
     Character.findById(req.params.id)
       .then(character => res.json(character))

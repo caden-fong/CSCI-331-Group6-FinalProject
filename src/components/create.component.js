@@ -52,7 +52,7 @@ class Create extends Component {
       },
       name: 'NoName',
       level: 1,
-      race: 'Human',
+      race: 'Dwarf',
       class:'Barbarian',
       subclass: 'Path of the Berserker',
       background: 'Acolyte',
@@ -124,7 +124,7 @@ class Create extends Component {
   }
 
   componentDidMount() {
-    axios.get('/classes/'+this.state.class)
+    axios.get('https://character-companion-api.herokuapp.com/classes/'+this.state.class)
       .then(response => {
         this.setState({
           classObject: response.data,
@@ -139,7 +139,7 @@ class Create extends Component {
       .catch(function (error) {
         console.log(error);
       })
-    axios.get('/backgrounds/')
+    axios.get('https://character-companion-api.herokuapp.com/backgrounds/')
       .then(response => {
         this.setState({ backgroundArray: response.data });
         let newbackground = response.data.find( background => background.name == this.state.background);
@@ -157,7 +157,7 @@ class Create extends Component {
         console.log(error);
       })
 
-    axios.get('/spells/source/PHB')
+    axios.get('https://character-companion-api.herokuapp.com/spells/source/PHB')
       .then(response => {
         this.setState({ spellArray: response.data });
         let newSpellList = this.state.spellArray
@@ -188,7 +188,7 @@ class Create extends Component {
     this.setState({race : e.target.value})
   }
   onChangeClass(e) {
-    axios.get('/classes/'+e.target.value)
+    axios.get('https://character-companion-api.herokuapp.com/classes/'+e.target.value)
       .then(response => {
         this.setState({
           classObject: response.data,
@@ -331,7 +331,7 @@ class Create extends Component {
     console.log(character);
     console.log('ID: ' + this.props.user.id);
 
-    axios.post('/characters/create/'+this.props.user.id, character)
+    axios.post('https://character-companion-api.herokuapp.com/characters/create/'+this.props.user.id, character)
       .then(res => {this.props.navigate("/profile")})
       .catch(function (error) {
         console.log('Error: create component: ' + error.response.data);

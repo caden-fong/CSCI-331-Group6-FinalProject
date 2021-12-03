@@ -17,14 +17,14 @@ class Viewer extends Component {
   }
 
   componentDidMount() {
-    axios.get('/characters/' + this.props.params.id)
+    axios.get('https://character-companion-api.herokuapp.com/characters/' + this.props.params.id)
         .then(response => {
             this.setState({ character: response.data, classInfo: response.data.stats });
         })
         .catch((error) => {
             console.log(error);
         });
-    axios.get('/backgrounds/')
+    axios.get('https://character-companion-api.herokuapp.com/backgrounds/')
         .then(response => {
           let newbackground = response.data.find( background => background.name == this.state.character.background);
           let characteristics = newbackground.entries.find(entry => entry.name == "Suggested Characteristics");
@@ -35,7 +35,7 @@ class Viewer extends Component {
         .catch(function (error) {
           console.log(error);
         })
-    axios.get('/races/')
+    axios.get('https://character-companion-api.herokuapp.com/races/')
         .then(response => {
           console.log("race");
           console.log(this.state.character.race);
@@ -50,7 +50,7 @@ class Viewer extends Component {
   }
 
   deleteCharacter() {
-    axios.delete('/characters/' + this.state.character._id)
+    axios.delete('https://character-companion-api.herokuapp.com/characters/' + this.state.character._id)
     .then(response => console.log(response))
     .catch(error => console.log(error));
   }
