@@ -35,18 +35,6 @@ class Profile extends Component {
         });
   }
 
-  componentDidUpdate() {
-    if(this.props.user.id) {
-      axios.get('/characters/user/' + this.props.user.id)
-        .then(response => {
-            this.setState({ characters: response.data });
-        })
-        .catch((error) => {
-            console.log(error);
-        });
-    }
-  }
-
   characterList() {
     return this.state.characters.map(character => {
       return <Character key={character._id} character={character}/>;
