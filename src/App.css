@@ -194,6 +194,11 @@
     height: 599px;
 }
 
+.fillerSpace2 {
+    visibility: hidden;
+    height: 310px;
+}
+
 .userp {
     font-size: 50pt;
     font-family: 'Grenze Gotisch', cursive;

@@ -76,6 +76,7 @@ class Profile extends Component {
           <div className="row">
             {this.characterList()}
           </div>
+          <div className="fillerSpace2">h</div>
         </div>
       </>
     )
