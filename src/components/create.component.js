@@ -50,9 +50,9 @@ class Create extends Component {
         subclass: [{}],
         subclassFeature: [{}]
       },
-      name: '',
+      name: 'NoName',
       level: 1,
-      race: '',
+      race: 'Human',
       class:'Barbarian',
       subclass: 'Path of the Berserker',
       background: 'Acolyte',
@@ -63,14 +63,14 @@ class Create extends Component {
         quantity: 0,
         dice: ''
       },
-      alignment: '',
+      alignment: 'Lawful Good',
       stats: {
-        strength: 0,
-        dexterity: 0,
-        constitution: 0,
-        intelligence: 0,
-        wisdom: 0,
-        charisma: 0
+        strength: 8,
+        dexterity: 8,
+        constitution: 8,
+        intelligence: 8,
+        wisdom: 8,
+        charisma: 8
       },
       savingThrows: {
         strength: false,
@@ -102,17 +102,19 @@ class Create extends Component {
       ideals: 'Click to choose your ideal',
       bonds: 'Click to choose your bond',
       flaws: 'Click to choose your flaw',
-      proficiencies: {},
-      features: {},
-      spells: {},
+      proficiencies: [],
+      features: [],
+      spells: [],
       sources: ["PHB", "TCE"],
       fluff: "",
       subclassDescription: '',
       backgroundObject: {},
       backgroundsArray: [],
       backgroundDescription: '',
-      isLoading: true,
-      characteristics: []
+      isLoading: 3,
+      characteristics: [],
+      spellArray: [],
+      spellList: []
       
     }
 
@@ -129,7 +131,10 @@ class Create extends Component {
           fluff: response.data.class[0].fluff[0].entries[0],
         });
         let subclassFluff = response.data.subclassFeature.filter( subclass => subclass.name == this.state.subclass);
-        this.setState({ subclassDescription: subclassFluff[0].entries[0]});
+        this.setState({ 
+          subclassDescription: subclassFluff[0].entries[0],
+          isLoading: this.state.isLoading-1
+        });
       })
       .catch(function (error) {
         console.log(error);
@@ -138,13 +143,32 @@ class Create extends Component {
       .then(response => {
         this.setState({ backgroundArray: response.data });
         let newbackground = response.data.find( background => background.name == this.state.background);
+        let newcharacteristics = newbackground.entries.find(entry => entry.name == "Suggested Characteristics");
         this.setState({ 
           backgroundObject: newbackground,
-          backgroundDescription: newbackground.entries[1].entries[0],
-          characteristics: newbackground.entries.find(entry => entry.name == "Suggested Characteristics"),
-          isLoading: false
+          characteristics: newcharacteristics,
+          backgroundDescription: newcharacteristics.entries[0]
         });
-        console.log(this.state.characteristics);
+        this.setState({ 
+          isLoading: this.state.isLoading - 1
+        });
+      })
+      .catch(function (error) {
+        console.log(error);
+      })
+
+    axios.get('/spells/source/PHB')
+      .then(response => {
+        this.setState({ spellArray: response.data });
+        let newSpellList = this.state.spellArray
+          .filter(spell => { 
+            return (spell.classes.fromClassList.some( sp => sp.name == "Cleric") 
+                  && spell.level == 1)
+          });
+        this.setState({ 
+          spellList: newSpellList,
+          isLoading: this.state.isLoading - 1
+        });
       })
       .catch(function (error) {
         console.log(error);
@@ -158,7 +182,9 @@ class Create extends Component {
   }
 
   onChangeLevel(e) {}
-  onChangeRace(e) {}
+  onChangeRace(e) {
+    this.setState({race : e.target.value})
+  }
   onChangeClass(e) {
     axios.get('/classes/'+e.target.value)
       .then(response => {
@@ -223,12 +249,27 @@ class Create extends Component {
   }
   onChangeProficiencies(e) {}
   onChangeFeatures(e) {}
-  onChangeSpells(e) {}
+  onChangeSpells(e) {
+    if (e.target.checked) {
+      let newList = this.state.spells;
+      let newSpell = this.state.spellList.find(spell => spell.name == e.target.id);
+      newList.push(newSpell);
+      this.setState({ spells : newList });
+    } else {
+      let newList = this.state.spells;
+      let removedSpellIndex = this.state.spellList.indexOf(spell => spell.name == e.target.id);
+      newList.splice(removedSpellIndex, 1);
+      this.setState({ spells : newList });
+    }
+    console.log(this.state.spells);
+ 
+  }
 
   onChangeStrength(e) {
     let newStats = this.state.stats
     newStats.strength = e.target.value
     this.setState({ stats : newStats })
+    console.log(newStats);
   }
   onChangeDexterity(e) {
     let newStats = this.state.stats
@@ -262,59 +303,25 @@ class Create extends Component {
 
     const character = {
       name: this.state.name,
-      level: 1,
-      race: '',
-      class: 'Barbarian',
-      background: '',
-      proficiencyBonus: 0,
-      hitPoints: 0,
-      speed: 0,
-      hitDice: {
-        quantity: 0,
-        dice: ''
-      },
-      alignment: '',
-      stats: {
-        strength: 0,
-        dexterity: 0,
-        constitution: 0,
-        intelligence: 0,
-        wisdom: 0,
-        charisma: 0
-      },
-      savingThrows: {
-        strength: false,
-        dexterity: false,
-        constitution: false,
-        intelligence: false,
-        wisdom: false,
-        charisma: false
-      },
-      skills: {
-        acrobatics: false,
-        animalHandling: false,
-        arcana: false,
-        athletics: false,
-        deception: false,
-        history: false,
-        insight: false,
-        medicine: false,
-        nature: false,
-        perception: false,
-        performance: false,
-        persuasion: false,
-        religion: false,
-        sleightOfHand: false,
-        stealth: false,
-        survival: false
-      },
-      personalityTraits: '',
-      ideals: '',
-      bonds: '',
-      flaws: '',
-      proficiencies: {},
-      features: {},
-      spells: {}
+      level: this.state.level,
+      race: this.state.race,
+      class: this.state.class,
+      background: this.state.background,
+      proficiencyBonus:  this.state.proficiencyBonus,
+      hitPoints:  this.state.hitPoints,
+      speed:  this.state.speed,
+      hitDice: this.state.hitDice,
+      alignment: this.state.alignment,
+      stats: this.state.stats,
+      savingThrows: this.state.savingThrows,
+      skills: this.state.skills,
+      personalityTraits: this.state.personalityTraits,
+      ideals: this.state.ideals,
+      bonds: this.state.bonds,
+      flaws: this.state.flaws,
+      proficiencies: this.state.proficiencies,
+      features: this.state.features,
+      spells: this.state.spells
     };
 
   
@@ -458,8 +465,21 @@ class Create extends Component {
     }
     renderProficiencyOptions() {}
     renderFeatureOptions() {}
-    renderSpellOptions() {}
-
+    renderSpellOptions() {
+      return this.state.spellList.map((spell) => {
+        return (
+          <div 
+                className="form-check"
+                onChange={this.onChangeSpells}
+          >
+          <input className="form-check-input" type="checkbox" value="" id={spell.name} />
+          <label className="form-check-label" for={spell.name}>
+          {spell.name}
+          </label>
+          </div>
+        )
+      })
+    }
     renderAlignmentOptions() {
       return (<>
         <option>Lawful Good</option>
@@ -478,7 +498,8 @@ class Create extends Component {
     if(!this.props.user.id) {
       return null;
     }
-    if (this.state.isLoading) {
+
+    if (this.state.isLoading > 0) {
       return (
         <div className="container create">
         <p>Create a Character</p>
@@ -659,25 +680,6 @@ class Create extends Component {
                 { this.renderSavingThrowOptions() }
               <small>Click to choose your saving throws</small>
             </div>
-            <div className="col-sm creat3">
-              <label>Features</label>
-              <select 
-                className="form-select"
-                onChange={this.onChangeFeatures}
-              >
-                { this.renderFeatureOptions() }
-              </select>
-              <small>Click to choose your features</small>
-            </div>
-          </div>
-          <div className="row creatrow">
-            <div className="col-sm creat4">
-              <label>Skills</label>
-
-                { this.renderSkillOptions() }
-
-              <small>Click to choose your skill proficiencies</small>
-            </div>
             <div className="col-sm creat4">
               <label>Personality Traits</label>
               <select 
@@ -687,7 +689,10 @@ class Create extends Component {
                 { this.renderPersonalityTraitOptions() }
               </select>
               <small>{this.state.personalityTraits}</small>
-            </div>
+            </div>            
+          </div>
+          <div className="row creatrow">
+
             <div className="col-sm creat4">
               <label>Ideals</label>
               <select 
@@ -698,8 +703,7 @@ class Create extends Component {
               </select>
               <small>{this.state.ideals}</small>
             </div>
-          </div>
-          <div className="row creatrow">
+            
             <div className="col-sm creat2">
               <label>Bonds</label>
               <select 
@@ -720,28 +724,8 @@ class Create extends Component {
               </select>
               <small>{this.state.flaws} </small>
             </div>
-            <div className="col-sm creat2">
-              <label>Proficiencies</label>
-              <select 
-                className="form-select"
-                onChange={this.onChangeProficiencies}
-              >
-                { this.renderProficiencyOptions() }
-              </select>
-              <small> Click to choose your other Proficiencies </small>
-            </div>
           </div>
           <div className="row creatrow">
-            <div className="col-sm creat2">
-              <label>Spells</label>
-              <select 
-                className="form-select"
-                onChange={this.onChangeSpells}
-              >
-                { this.renderSpellOptions() }
-              </select>
-              <small>Click to choose your spells</small>
-            </div>
             <div className="col-sm creat5">
               <input type="submit" value="Submit" className="btn btn-dark" />
             </div>

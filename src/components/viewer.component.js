@@ -8,7 +8,12 @@ class Viewer extends Component {
   constructor(props) {
     super(props);
 
-    this.state = {character: {}, classInfo: {}};
+    this.state = {
+      character: {},
+      classInfo: {},
+      backgroundInfo: '',
+      raceInfo: ''
+    };
   }
 
   componentDidMount() {
@@ -19,6 +24,29 @@ class Viewer extends Component {
         .catch((error) => {
             console.log(error);
         });
+    axios.get('/backgrounds/')
+        .then(response => {
+          let newbackground = response.data.find( background => background.name == this.state.character.background);
+          let characteristics = newbackground.entries.find(entry => entry.name == "Suggested Characteristics");
+          this.setState({ 
+            backgroundInfo: characteristics.entries[0]
+          });
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
+    axios.get('/races/')
+        .then(response => {
+          console.log("race");
+          console.log(this.state.character.race);
+          let currentRace = response.data.find(race => race.name == this.state.character.race)
+          this.setState({ 
+            raceInfo: currentRace.entries[3].entries[0]
+          });
+        })
+        .catch(function (error) {
+          console.log(error);
+        })
   }
 
   deleteCharacter() {
@@ -50,10 +78,10 @@ class Viewer extends Component {
           </div>
           <div className="row creatrow">
             <div className="col-sm creatview">
-              Race: {this.state.character.race}
+              Race: {this.state.character.race}<p/>{this.state.raceInfo}
             </div>
             <div className="col-sm creatview">
-              Background: {this.state.character.background}
+              Background: {this.state.character.background}<p/>{this.state.backgroundInfo}
             </div>
           </div>
           <div className="row creatrow">
