@@ -144,6 +144,7 @@ class Create extends Component {
           characteristics: newbackground.entries.find(entry => entry.name == "Suggested Characteristics"),
           isLoading: false
         });
+        console.log(this.state.characteristics);
       })
       .catch(function (error) {
         console.log(error);
@@ -197,7 +198,7 @@ class Create extends Component {
     this.setState({ skills : skillBlock })
   }
   onChangePersonalityTraits(e) {
-    let newTrait = this.state.characteristics.entries[2].rows[e.target.value-1][1] 
+    let newTrait = this.state.characteristics.entries[1].rows[e.target.value-1][1] 
     this.setState({ 
       personalityTraits: newTrait
     })
@@ -209,13 +210,13 @@ class Create extends Component {
     })
   }
   onChangeBonds(e) {
-    let newBond = this.state.characteristics.entries[2].rows[e.target.value-1][1] 
+    let newBond = this.state.characteristics.entries[3].rows[e.target.value-1][1] 
     this.setState({ 
       bonds: newBond
     })
   }
   onChangeFlaws(e) {
-    let newFlaw = this.state.characteristics.entries[2].rows[e.target.value-1][1] 
+    let newFlaw = this.state.characteristics.entries[4].rows[e.target.value-1][1] 
     this.setState({ 
       flaws: newFlaw
     })
