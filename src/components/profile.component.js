@@ -8,9 +8,8 @@ const Character = props => (
     <div className="col- prf">
       <div className="card">
         <div className="card-body">
-          <h5 className="card-title">{props.character.name}</h5>
-          <p>{props.character.class}, level {props.character.level}</p>
-          <p>{props.character.race}</p>
+          <h1 className="card-title">{props.character.name}</h1>
+          <p>{props.character.race} {props.character.class}, level {props.character.level}</p>
           <Link className="btn btn-dark stretched-link" to={"/viewer/"+props.character._id}>view</Link>
         </div>
       </div>
