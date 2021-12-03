@@ -37,7 +37,7 @@ export default class Signup extends Component {
       password: this.state.password
     };
 
-    axios.post('/users/create', newUser)
+    axios.post('/users/add', newUser)
       .then(res => window.location = '/login').catch(error => this.setState({errorSignin: "Invalid sign-in, please try again.", username: '', password: ''}));
   };
 
