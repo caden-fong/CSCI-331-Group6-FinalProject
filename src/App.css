@@ -136,6 +136,7 @@
 .spacing {
     padding-bottom: 9.25em;
     background-color: transparent;
+    visibility: hidden;
 }
 
 .morestuff {
@@ -176,25 +177,27 @@
 .userinfo {
     font-family: 'Fira Sans', sans-serif;
     color: white;
-    font-size: 15pt;
-    padding: 100px;
-}
-
-.indchar {
-    width: 200px;
+    padding: 60px;
     align-content: center;
 }
 
 .prf {
-    width: 350px;
-    margin-left: 13.5em;
-    margin-top: 100px;
-    margin-bottom: 100px;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    font-size: 50px;
+    padding-left: 100px;
+    width: 600px;
+}
+
+.fillerSpace {
+    visibility: hidden;
+    height: 599px;
 }
 
 .userp {
     font-size: 50pt;
     font-family: 'Grenze Gotisch', cursive;
+    padding-top: 30px;
 }
 
 .create {
