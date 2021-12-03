@@ -181,7 +181,9 @@ class Create extends Component {
     this.setState({name : e.target.value})
   }
 
-  onChangeLevel(e) {}
+  onChangeLevel(e) {
+    this.setState({level: e.target.value})
+  }
   onChangeRace(e) {
     this.setState({race : e.target.value})
   }
@@ -628,6 +630,16 @@ class Create extends Component {
               <select 
                 className="form-select"
                 onChange={this.onChangeDexterity}
+              >
+                { this.renderStatOptions() }
+              </select>
+              <small>Click to choose stat number </small>
+            </div>
+            <div className="col-sm creat3">
+              <label>Constitution</label>
+              <select 
+                className="form-select"
+                onChange={this.onChangeConstitution}
               >
                 { this.renderStatOptions() }
               </select>

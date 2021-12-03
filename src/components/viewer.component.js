@@ -106,6 +106,20 @@ class Viewer extends Component {
           </div>
           <div className="row creatrow">
             <div className="col-sm creatview">
+              Personality Traits: {this.state.character.personalityTraits}
+            </div>
+            <div className="col-sm creatview">
+              Ideals: {this.state.character.ideals}
+            </div>
+            <div className="col-sm creatview">
+              Bonds: {this.state.character.bonds}
+            </div>
+            <div className="col-sm creatview">
+              Flaws: {this.state.character.flaws}
+            </div>
+          </div>
+          <div className="row creatrow">
+            <div className="col-sm creatview">
               Proficency Bonus: {Math.ceil(this.state.character.level / 4) + 1}
             </div>
             <div className="col-sm creatview">
