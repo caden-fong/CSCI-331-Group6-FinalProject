@@ -138,7 +138,6 @@ class Create extends Component {
       .then(response => {
         this.setState({ backgroundArray: response.data });
         let newbackground = response.data.find( background => background.name == this.state.background);
-        console.log(newbackground);
         this.setState({ 
           backgroundObject: newbackground,
           backgroundDescription: newbackground.entries[1].entries[0],
@@ -167,6 +166,10 @@ class Create extends Component {
           class: e.target.value,
         });
         this.setState({ fluff: this.state.classObject.class[0].fluff[0].entries[0] });
+        let classes = this.state.classObject.subclass.filter( subclass => this.state.sources.includes(subclass.source));
+        let newSubclass = classes[0];
+        let subclassFluff = this.state.classObject.subclassFeature.find( subclass => subclass.name == newSubclass.name);
+        this.setState({ subclass: newSubclass, subclassDescription: subclassFluff.entries[0]});
       })
       .catch(function (error) {
         console.log(error);
@@ -174,8 +177,9 @@ class Create extends Component {
   }
   onChangeSubclass(e) { 
     let subclassFluff = this.state.classObject.subclassFeature.find( subclass => subclass.name == e.target.value);
-    this.setState({ subclass: e.target.value, subclassDescription: subclassFluff[0].entries[0]});
+    this.setState({ subclass: e.target.value, subclassDescription: subclassFluff.entries[0]});
   }
+
   onChangeBackground(e) {
     let newbackground = this.state.backgroundArray.find( background => background.name == e.target.value);
     this.setState({ 
