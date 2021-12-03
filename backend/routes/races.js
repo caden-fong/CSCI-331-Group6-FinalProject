@@ -8,7 +8,7 @@ router.route('/:name').get((req, res) => {
       .catch(err => res.status(400).json('Error: ' + err));
   });
 
-router.route('/:source').get((req, res) => {
+router.route('/source/:source').get((req, res) => {
   Race.find({ source: req.params.source })
     .then(race => res.json(race))
     .catch(err => res.status(400).json('Error: ' + err));

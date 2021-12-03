@@ -2,7 +2,7 @@
 const router = require('express').Router();
 let Spell = require('../models/spell.model');
 
-router.route('/name/:name').get((req, res) => {
+router.route('/:name').get((req, res) => {
     Spell.findOne({ name: req.params.name })
       .then(spell => res.json(spell))
       .catch(err => res.status(400).json('Error: ' + err));
