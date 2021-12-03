@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './../App.css'
 import axios from 'axios';
 import { useNavigate, useParams } from 'react-router';
+import { Link } from 'react-router-dom';
 
 class Viewer extends Component {
   constructor(props) {
@@ -20,6 +21,11 @@ class Viewer extends Component {
         });
   }
 
+  deleteCharacter() {
+    axios.delete('/characters/' + this.state.character._id)
+    .then(response => console.log(response))
+    .catch(error => console.log(error));
+  }
 
     render() {
       if(!this.state.character._id) {
@@ -81,7 +87,7 @@ class Viewer extends Component {
               Passive Perception: {10 + Math.floor((this.state.character.stats[0].wisdom - 10)/2)}
             </div>
           </div>
-          <input type="submit" value="Delete" className="btn btn-dark del" />
+          <Link to="/profile" className="btn btn-dark del" onClick={() => this.deleteCharacter()}>Delete</Link>
       </div>    
     )
   }
