@@ -37,7 +37,7 @@ export default class Signup extends Component {
       password: this.state.password
     };
 
-    axios.post('/users/add', newUser)
+    axios.post('https://character-companion-api.herokuapp.com/users/add', newUser)
       .then(res => window.location = '/login').catch(error => this.setState({errorSignin: "Invalid sign-in, username should be unique and strong passwords are required.", username: '', password: ''}));
   };
 

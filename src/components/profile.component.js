@@ -26,7 +26,7 @@ class Profile extends Component {
   }
 
   componentDidMount() {
-    axios.get('/characters/user/' + this.props.user.id)
+    axios.get('https://character-companion-api.herokuapp.com/characters/user/' + this.props.user.id)
         .then(response => {
             this.setState({ characters: response.data });
         })
@@ -35,6 +35,21 @@ class Profile extends Component {
         });
   }
 
+<<<<<<< HEAD
+=======
+  componentDidUpdate() {
+    if(this.props.user.id) {
+      axios.get('https://character-companion-api.herokuapp.com/characters/user/' + this.props.user.id)
+        .then(response => {
+            this.setState({ characters: response.data });
+        })
+        .catch((error) => {
+            console.log(error);
+        });
+    }
+  }
+
+>>>>>>> c4097d636a3b6e126eea67f971d7774d77fb4d4c
   characterList() {
     return this.state.characters.map(character => {
       return <Character key={character._id} character={character}/>;

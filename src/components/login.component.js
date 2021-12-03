@@ -40,8 +40,9 @@ class Login extends Component {
       password: this.state.password
     };
 
-    axios.post('/users/login', newUser)
+    axios.post('https://character-companion-api.herokuapp.com/users/login', newUser)
       .then(res => {
+        console.log(typeof(res.data));
         this.props.setLoginUser(res.data);
         localStorage.setItem('user', JSON.stringify(res.data));
         this.props.navigate('/profile');

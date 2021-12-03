@@ -1,21 +1,5 @@
-# CSCI-331-Group6-FinalProject
+Character Companion
 
-To install packages:
+Here is a link to the deployed website: https://character-companion.herokuapp.com/
 
-inside CharacterBuilder:
-run "npm install" to install node packages
-
-inside backend:
-run "npm install" to install node packages
-
-
-To run server:
-
-inside backend:
-run "nodemon server" and leave terminal open
-
-inside src:
-run "npm start" and leave terminal open
-
-Tutorial:
-https://medium.com/@beaucarnes/learn-the-mern-stack-by-building-an-exercise-tracker-mern-tutorial-59c13c1237a1
+Here is a link to our presentation: https://docs.google.com/presentation/d/1OXA9WlMHApeTHqDxT0o7-5XMUvivFfZf-cMO5ERrtb0/edit?usp=sharing
