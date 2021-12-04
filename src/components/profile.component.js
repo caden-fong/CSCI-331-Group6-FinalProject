@@ -36,7 +36,7 @@ class Profile extends Component {
   }
 
   componentDidUpdate() {
-    if(this.props.user.id) {
+    if(this.props.user.id && this.state.characters.length === 0) {
       axios.get('https://character-companion-api.herokuapp.com/characters/user/' + this.props.user.id)
         .then(response => {
             this.setState({ characters: response.data });
